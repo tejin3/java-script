@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let x = 0.2 + 0.1;
+        console.log(x);
+
+
+        //자바스크립트 64비트 부동 소수점으로 숫자 저장
+        //0.2 와 0.1 을 2진수로 바꾸면 나우어 떨어지지 않고 무한히 감
+
+        //이러한 문제 때문에 원하는 숫자가 나오지 않을 가능성이 있다.
+
+        console.log((0.2).toString(2));
+
+        let y = 9999999999999999;
+        console.log(Number.MAX_SAFE_INTEGER)
+        console.log(y);
+    </script>
+</body>
+
+</html>

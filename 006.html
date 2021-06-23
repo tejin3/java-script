@@ -17,6 +17,8 @@
         };
         // 키: 벨류
 
+        // person.address = "fosdkljfs";    이렇게 하면 해당 내용이 person에 추가됨
+
         console.log(person.firstName);
         console.log(person.lasttName);
         console.log(person.age);
@@ -30,13 +32,17 @@
 
         let firstNameKey = "firstName";
         // console.log(person.firstNameKey); // . ASDfasdf 는 키 이름으로 생각함 근데 그런 키 없음
+
         console.log(person[firstNameKey]); // 문자열 값으로 인식. 지니고 있는 값을 갖고 키를 찾음
-        //어떤 데이터를 찾고싶어 할 지 모를 때 해당 값을 변수로 받고, 변수를 문자열 값으로 인식하게 해서 지니고 있는 값으로 키를 찾음.
+
         //  []안에 해당되는 내용을 person에서 찾아라 
 
         //콘솔로 오브젝트 안의 내용을 찾는 방법은 두개가 있는데 
-        //a.aa 는  a안의 aa 키 값을 찾아라
-        //a["aa"] 는 aa의 값을 a에서 찾아라
+        //a.aa 는  a안의 aa 라는 키 값을 찾아라
+
+        //a["aa"] 는 aa의 값을 a에서 찾아라.[변수]
+        //어떤 데이터를 찾고싶어 할 지 모를 때 해당 값을 변수로 받고, 변수를 인식하게 해서 지니고 있는 값으로 키를 찾음.
+        //if문으로 찾으려면 복잡하고 길어진다.
     </script>
 </body>
 
