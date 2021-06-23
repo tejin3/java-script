@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var x = 5;
+        var y = 7;
+        var z = x + y;
+        console.log("x", x)
+        console.log("y", y)
+        console.log("z", z)
+
+
+        var x = 9;
+        console.log("x", x)
+        // 자바스크립트는 동일한 변수명을 재선언 할 수 있음. 다른 언어는 동일한 변수명 선언 안됨
+        // 몇 천줄 밑에 동일한 변수명을 재선언 할 가능성이 있음. 문제생김. 특히 여럿이서 만들거나, 오픈소스 이용할 때
+
+        // 그래서 다른 변수선언자 만들어줌
+        let x = 5;
+        let y = 7;
+        let z = x + y;
+        console.log("x", x);
+        console.log("y", y);
+        console.log("z", z);
+        x = 7; //가능
+        let x = 5; // 변수명 재선언 불가능
+
+
+        const x = 5; // 선언 순간에 값을 꼭 지정해줘야한다. . 절대 못바꿔. 그냥 써
+        x = 7; // 불가능
+    </script>
+</body>
+
+</html>
