@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Object 오브젝트 (객체)
+        //데이터를 담는 측면만. 기능은 나중에
+        let person = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 40,
+            tel: "010101010",
+            email: "aaa@mail.com"
+        };
+        // 키: 벨류
+
+        console.log(person.firstName);
+        console.log(person.lasttName);
+        console.log(person.age);
+
+        person.age = 41;
+        console.log(person.age);
+
+        console.log(person["firstName"]);
+
+        //두가지 있는 이유는
+
+        let firstNameKey = "firstName";
+        // console.log(person.firstNameKey); // . ASDfasdf 는 키 이름으로 생각함 근데 그런 키 없음
+        console.log(person[firstNameKey]); // 문자열 값으로 인식. 지니고 있는 값을 갖고 키를 찾음
+        //어떤 데이터를 찾고싶어 할 지 모를 때 해당 값을 변수로 받고, 변수를 문자열 값으로 인식하게 해서 지니고 있는 값으로 키를 찾음.
+    </script>
+</body>
+
+</html>
