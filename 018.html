@@ -83,7 +83,18 @@
             }
         }
 
+
+
         // 배열 생성하고 배열에 밀어넣은 후 보여줘도 됨
+
+        var outout = [];
+        for (var list of productlist) {
+            if (product.price <= inputCoin) {
+                outout.push(list);
+            }
+        }
+
+        console.table(outout);
     </script>
 </body>
 

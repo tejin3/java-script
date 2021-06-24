@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //문제4. 계산기 만들기. 숫자 2개에 대한 더하기/빼기/곱하기/나누기를 수행하는 함수
+        //파라미터로 숫자 2개와 operator인 +,-,*,/ 를 입력받고 계산 수행
+        //함수명 calculator
+        //파라미터명 n1, n2, operator
+        //return  계산된 값
+
+        function calculator(n1, n2, operator) {
+            var re
+            if (operator == "+") {
+                re = n1 + n2
+            } else if (operator == "-") {
+                re = n1 - n2
+            } else if (operator == "*") {
+                re = n1 * n2
+            } else if (operator == "/") {
+                re = n1 / n2
+            } else {
+                "입력 제대로 하시오"
+            }
+
+            return re;
+        }
+
+        console.log(calculator(2, 3, "+"));
+
+
+
+        // function add(n1, n2) {
+        //     return n1 + n2;
+        // }
+
+        // function aaaa (n1, n2, operator) {
+        //     if (operator == "+") {
+        //         return add(n1, n2);
+        //     }
+        // }
+
+        // //개발자가 쓸 때 편하다.
+
+        function calculator2(n1, n2, operator) {
+            return eval(n1 + operator + n2);
+        }
+        // 공격에 취약하니까 쓰지마라 라고 권장함.
+        // eval 문자열을 코드로 실행
+
+        // 자바스크립트는 보안에 취약한 언어. 코드를 개발자 도구로 다 볼 수 있어서.
+    </script>
+</body>
+
+</html>
