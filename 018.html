@@ -1,0 +1,90 @@
+<!-- 유저리스트의 데이터에서 gender가 male인 사람만 -->
+<!-- 새 배열 maleUserList에 담고 console창에 출력하세요 -->
+
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="user_data.js"></script>
+    <!-- 다른 블록에다가 스크립트 짜야함 위에는 데이터 가져오고 끝 -->
+    <script>
+        // var maleUserList = [];
+
+        // for (var gm of userList) {
+        //     if (gm["gender"] == "male") {
+
+        //         maleUserList.push(gm);
+        //     }
+        // }
+
+        // console.log(maleUserList);
+        // console.table(maleUserList);
+
+
+        // for (var gm of userList) {
+        //     if (gm.gender == "male") {
+
+        //         maleUserList.push(gm);
+        //     }
+        // }
+
+        // console.log(maleUserList);
+        // console.table(maleUserList);
+
+
+        // console.table(userList.filter(u => u.gender == "male"));
+
+
+        // 문제2. 음료자판기 문제.  productlist에서 inputCoin으로 구매할 수 있는 음료 목록을 출력하세요
+
+        var productlist = [{
+                name: "솔의눈",
+                price: 700
+            },
+            {
+                name: "커피",
+                price: 700
+            },
+            {
+                name: "파워레이드",
+                price: 1200
+            },
+            {
+                name: "오렌지",
+                price: 1000
+            },
+            {
+                name: "보리차",
+                price: 1200
+            },
+            {
+                name: "밀키스",
+                price: 800
+            },
+        ];
+
+        var inputCoin = 800;
+
+
+
+
+        for (var list of productlist) {
+            if (list.price <= 800) {
+                console.log(list.name);
+            }
+        }
+
+        for (var list of productlist) {
+            if (list.price <= inputCoin) {
+                console.log(list.name);
+            }
+        }
+
+        // 배열 생성하고 배열에 밀어넣은 후 보여줘도 됨
+    </script>
+</body>
+
+</html>

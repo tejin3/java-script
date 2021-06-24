@@ -10,6 +10,11 @@
 
 
         var brands = ["애플", "구글", "페이스북", "아마존", "삼성"];
+
+        for (var index in brands) {
+            console.log(brands[index]);
+        }
+
         console.log(brands[0]);
         console.log(brands[1]);
         console.log(brands[2]);
@@ -40,10 +45,41 @@
 
         var length = brands.length;
 
-        for (var i = 0; i < brands.length; i++) { //.length 알아서 몇개 담겨있는지 수로 인식
+        for (var i = 0; i < length; i++) { //.length 알아서 몇개 담겨있는지 수로 인식
             console.log(brands[i]); //애플, 구글, 페이스북, 아마존, 삼성
         }
         // 이래야 효율이 좋아짐. 위에서 한번만 물어보니까
+
+
+
+        // for-in
+        //이름을 가져옴
+        let person = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 40,
+            tel: "010101010",
+            email: "aaa@mail.com"
+        };
+
+        for (var key in person) {
+            console.log(key); // 키 이름 주루룩
+            console.log(key, person[key]); //키 이름, 벨류 값
+        }
+
+
+        // for-of
+        //값 자체를 가져옴
+
+        for (var brand of brands) {
+            console.log(brand);
+        }
+
+
+        var lang = "JavaScript";
+        for (var c of lang) {
+            console.log(c);
+        }
     </script>
 </body>
 
