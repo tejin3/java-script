@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //toUpperCase()
+
+        var txt = "Hello World";
+        console.log(txt.toUpperCase());
+
+        //toLowerCase();
+        console.log(txt.toLowerCase());
+
+        // 데이터베이스에 Jhon Doe 라고 저장되어 있고, 찾을 때 소문자로만 입력하면 안나옴
+        // 그걸 대문자 or 소문자로 만들어 둔 뒤 비교검색
+
+
+        //concat() - 문자열 더해줄때
+        //+
+
+        var text1 = "Hello";
+        var text2 = "World";
+        console.log(text1.concat(" ", text2, "!"));
+
+        //trim()
+        var text = "               Hello World           "
+        console.log(text);
+        console.log(text.trim());
+        //실수로 공백 입력했을 때
+        //서버 개발자가 공백 짤라서 비교
+
+
+        //padStart(). 첫번째 - 문자열의 총길이, 두번째 - 뭘로 채울래???
+        var txt = "5";
+        console.log(txt.padStart(4, 0));
+        console.log(txt.padStart(5, 0));
+        console.log(txt.padStart(4, 1));
+        // 한자리수 숫자 앞에 0 채워줄 때
+        // 학번 빈자리 0 채워줄 때 
+
+
+        //0 채워주는 함수 만들어주자
+        //문자duf, 총길이 뭘로 채울지./.
+        //함수 -fillChar
+
+        // function fillchar(a, n1, n2) {
+
+
+        //     while (n1 == 0) {
+        //         n2 * 10
+        //     n2 * 10 * n1 승 + n2 * 10 n1-1승   ... n1-1 = 0 
+        //     }
+
+        // }
+
+
+        function fillchar(str, len, s) {
+            while (str.length < len) {
+                str = s + str;
+            }
+            return str;
+        }
+
+        console.log(fillchar("9", 4, 0));
+
+
+        //padEnd 뒤로 추가
+        var txt = "5";
+        console.log(txt.padEnd(4, 0));
+    </script>
+</body>
+
+</html>
