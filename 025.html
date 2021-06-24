@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 문자열 객체
+
+        var txt = "abcdefghijklmnopqrstuvwxyz";
+        console.log(txt.length);
+
+        //기능 뿐만 아니라 용도역시 파악해두자.
+        // 사용자 비번 몇자리인가, 주민번호 정말 6자리 입력 했는가
+
+
+
+        var txt = "Please locate where locate occur!";
+        console.log(txt.indexOf("locate"));
+        console.log(txt.lastIndexOf("locate"));
+
+
+        if (txt.indexOf("locate") > -1) {
+            console.log("")
+        }
+        // 전화번호 - 쓰지 말라고 했는 데 썻는지 확인인할 때 
+
+
+        //slice - 두개의 파라미터를 받는다. 첫번째 - 시작인덱스번호, 두번째 - 종료인덱스번호
+        var text = "Apple, Banana, kiwi"
+        console.log(text.slice(7, 13));
+        console.log(text.slice(7));
+        console.log(text.slice(-12)); // 뒤에서부터 센다
+        //주민번호 남녀구분
+
+        var txt = "9904121";
+        console.log(txt.slice(-1));
+        // 제품번호.  의미 파악하려고 몇번째 자리의 정보를 가져오고 싶을때 사용
+
+
+
+        //substring(마이너스 값 못 받음)  == slice  
+        console.log(text.slice(7, 13));
+        console.log(text.slice(7));
+
+
+        //substr = 첫번째 - 시작인덱스번호, 두번째 - 잘라낼 길이
+        var date = "20210624";
+        var year = date.slice(0, 4);
+        var year2 = date.substring(0, 4);
+        var year3 = date.substr(0, 4);
+
+        var month = date.slice(4, 6);
+        var month2 = date.substring(4, 6);
+        var month3 = date.substr(4, 2);
+
+        var day = date.slice(-2);
+        var day2 = date.substring(6);
+        var day3 = date.substr(6, 2);
+
+        var date = "2021.10.24"; //2021-10-24
+        date.substring(0, date.indexOf("."));
+        date.substring(date.indexOf(".") + 1, date.lastIndexOf("."));
+
+        var year = date.substr(0, 4);
+        var month = date.substr(5, 2);
+        var day = date.slice(-2);
+
+        console.log(year + "-" + month + "-" + day);
+
+
+        //replace
+        var date = date.replace(".", "-")
+        console.log(date.replace(".", "-")); //앞에것을 찾아서 뒤에것으로 바꿔
+
+        var date = date.replace(".", "-");
+        var date = date.replace(".", "-");
+        console.log(date);
+
+        var date = "2021.10.24";
+        console.log(date.replace(/\./g, "-")); //g 글로벌
+        console.log(date.replace(/\./, "-"));
+    </script>
+</body>
+
+</html>

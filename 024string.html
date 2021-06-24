@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var person = {
+            firstName: "John",
+            lastName: "Doe",
+            getFullName: function () {
+                return this.firstName + " " + this.lastName;
+            }
+        };
+
+        console.log(person.getFullName());
+
+        person.getFullName = function () {
+            return this.firstName + " " + this.lastName;
+        }
+
+        var person = {};
+
+        var person = new Object();
+    </script>
+</body>
+
+</html>
