@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 반복문 for-loop
+
+
+        var brands = ["애플", "구글", "페이스북", "아마존", "삼성"];
+        console.log(brands[0]);
+        console.log(brands[1]);
+        console.log(brands[2]);
+        console.log(brands[3]);
+        console.log(brands[4]);
+
+        // for-loop
+        // 특정 코드구문을 내가 원하는 횟수만큼 반복 실행
+
+        for (코드1; 조건; 코드2) {
+            //코드블록
+        }
+        // 코드1은 무조건 실행, 조건에는 코드블록을 실행할 조건절, 코드블록이 실행되면 무조건 실행되는 코드2
+
+
+        for (var i = 0; i < 5; i++) {
+            console.log(brands[i]); //애플, 구글, 페이스북, 아마존, 삼성
+        }
+
+
+        brands.push("개발자의품격");
+
+        for (var i = 0; i < brands.length; i++) { //.length 알아서 몇개 담겨있는지 수로 인식
+            console.log(brands[i]); //애플, 구글, 페이스북, 아마존, 삼성
+        }
+        // for 문이 돌때마다 length 값을 계속 물어봄
+
+
+        var length = brands.length;
+
+        for (var i = 0; i < brands.length; i++) { //.length 알아서 몇개 담겨있는지 수로 인식
+            console.log(brands[i]); //애플, 구글, 페이스북, 아마존, 삼성
+        }
+        // 이래야 효율이 좋아짐. 위에서 한번만 물어보니까
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 조건문 -
+        //     if
+        // 만일() 라면 {
+        //     뭐뭐해야지
+        // }
+
+        if (조건식) {
+            //코드선언
+        }
+
+        var age = 19;
+        var isAdult = false;
+
+        if (age >= 19) {
+            isAdult = ture;
+        }
+
+        if (isAdult == ture) {
+            //성인에 맞는 코드를 실행해
+        } else {
+            // isAdult == false, 모조건 else 블록 코드 실행
+        }
+        //성인이면 바로 이쪽으로 빠져나옴
+
+        if (isAdult) // isAdult 가 true 여서 이렇게도 쓸 수 있다.
+
+
+
+            var age = 7;
+        var isFree = false;
+
+        if (age >= 70) {
+            isFree = true;
+        } else if (age < 8) {
+            isFree = true;
+        } else {
+            isFree = false;
+        } //마지막 else 안써도 됨 똑같음
+        // 위에서부터 차례대로 수행
+
+
+        var time = null;
+
+        time = 20;
+        if (time <= 10) {
+            var greeting = "Good moring!"
+        } else if (time <= 16) {
+            var greeting = "Good afternoon!!"
+        } else if (time <= 20) {
+            var greeting = "Good evning!"
+        } else {
+            var greeting = "Good night!"
+        }
+
+        console.log(greeting);
+
+
+        //조건문
+
+        var d = new Date();
+        var day = d.getDay();
+        console.log("day", day);
+        var dayName = "";
+
+        var dayNames = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+        console.log(dayNames[day]);
+
+        // 위 아래 같음
+
+        switch (day) {
+            case 0:
+                dayName = 일요일;
+                break;
+            case 1:
+                dayName = 월요일;
+                break;
+            case 2:
+                dayName = 화요일;
+                break;
+            case 3:
+                dayName = 수요일;
+                break;
+            case 4:
+                dayName = 목요일;
+                break;
+            case 5:
+                dayName = 금요일;
+                break;
+            case 6:
+                dayName = 토요일;
+                break;
+            default:
+                break;
+        }
+        console.log("dayName", dayName);
+
+        // if 문으로 만들 수 있어서 스위치 잘 안씀
+    </script>
+</body>
+
+</html>
