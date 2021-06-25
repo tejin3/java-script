@@ -1,0 +1,99 @@
+<!-- 나이총합 -->
+<!-- 나이평균 -->
+<!-- 가장 나이 많은 사람 -->
+<!-- 가장 나이 적은 사람 -->
+<!-- 리턴 값이 있도록 -->
+<!-- 값이 많으면 오브젝트로 -->
+<!-- 들어가는 파라미터 없음 -->
+<!-- 정상적으로는 파라미터 두개 받음 -->
+
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="user_data.js"></script>
+    <script>
+        //나이총합 - getUserAgeSum
+        //나이평균 - getUserAgeAvg
+        //나이제일많은나이 - getUserAgeMax
+        //나이제일적은나이 - getUserAgeMin
+
+
+        function getUserAgeSum() {
+            var ageSum = 0;
+            for (var i of userList) {
+                let age = i.age;
+                ageSum = ageSum + age
+            }
+            return ageSum;
+        }
+        console.log(getUserAgeSum());
+
+
+        // sum += user.age
+
+
+        function getUserAgeAvg() {
+            var ageSum = 0;
+
+            for (var i of userList) {
+                let age = i.age;
+                ageSum = ageSum + age
+
+            }
+            var people = userList.length
+            var avg = 0;
+            avg = ageSum / people
+
+            return avg;
+        }
+        console.log(getUserAgeAvg());
+
+        // let avg = sum / userList.length;
+
+
+        function getUserAgeMax() {
+            var a = 0;
+            for (var i of userList) {
+                let age = i.age;
+                a = a + age
+            }
+            return a;
+        }
+        console.log(getUserAgeSum());
+
+
+
+        // if(user.age > maxAge) {
+        //     maxAge = user.age;
+        // }   // maxAge = 0
+
+
+        // if(user.age < minAge) {
+        //      minAge = user.age;
+        // }
+
+        let avg = sum / userList.length;
+
+        return {
+            "sum": sum,
+            "avg": avg,
+            "maxAge": maxAge,
+            "minAge": minAge
+        }
+
+        return {
+            sum,
+            avg,
+            maxAge,
+            minAge
+        } //키가 없으면 키와 변수명이 동일하다고 판단
+
+        let userMath
+    </script>
+</body>
+
+</html>
