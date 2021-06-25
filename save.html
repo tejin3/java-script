@@ -1,0 +1,13 @@
+// 엄청 자주 쓰인다.
+
+function getIntervalDate(intervalDay, format) {
+var now = new Date(); //지금시간
+var d = new Date(now.getTime() + ((60 * 60 * 24 * 100) * intervalDay));
+var year = d.getFullYear();
+var month = d.getMonth() + 1;
+var day = d.getDate();
+
+return format.replace("YYYY", year).replace("MM", month.toString().padStart(2, 0)).replace("DD", day);
+}
+
+console.log(getIntervalDate(-5, "YYYY-MM-DD"));
