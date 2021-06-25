@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // //25세 이상 30세 이하
+        // function getUserList(gender, fromAge, toAge) {
+        //     var outputList = [];
+        //     if (user.gender == gender && (user.age >= fromAge && user.age <= toAge)) {
+        //         outputList.push(user)
+        //     }
+
+        //     return outputList;
+        // }
+
+        // //     &&
+
+        // //     if (user.age <= 21) {
+        // //         outputList.push(user)
+        // //     }
+        // //     return outputList;
+        // // }
+
+        // let maleUserList = getUserList("male", 25, 30);
+
+
+
+        // //25세 이하이거나 35세 이상
+        // function getUserList1(gender, fromAge, toAge) {
+        //     var outputList = [];
+        //     if (user.gender == gender && (user.age <= fromAge || user.age >= toAge)) {
+        //         outputList.push(user)
+        //     }
+        //     return outputList;
+        // }
+
+
+        // let maleUserList1 = getUserList1("male", 25, 35);
+
+
+
+
+
+
+
+
+
+
+        //문제. 배열안에 배열. for-loop
+        //함수
+        //함수명 - printArray
+        //파라미터 - 배열
+        //출력 -console.log
+        //for 문 안에 for 문
+        var arr = [
+            [1, 2, 3, 4, 5],
+            [3, 12, 33, 24, 15],
+            [4, 7, 12, 3, 9],
+            [12, 32, 56, 23, 90],
+            [5, 9, 7, 21, 19],
+            [5, 9, 7, 21, 19]
+        ];
+
+        function printArray(arr2D) {
+            let len1 = arr2D.length; //6
+
+            for (let i = 0; i < len1; i++) {
+                //arr2D[i] //[1,2,3,4,5]
+                let len2 = arr2D[i].length; //5
+                for (let j = 0; j < len2; j++) {
+                    //arr2D[i][j]
+                    //[0][1,2,3,4,5]
+                    console.log(arr2D[i][j]);
+                }
+            }
+        }
+
+        printArray(arr);
+
+        // for (var i = 0; i < arr.length; i++) {
+        //     for (var u = 0; u < 5; u++)
+        //         console.log(u[""]);
+
+        // }
+    </script>
+</body>
+
+</html>
