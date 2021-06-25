@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //넘버 객체
+
+        var x = 123;
+        x.toString();
+        // x + ""; 숫자에 문자를 더하면 문자로 변환
+
+        //toExponential(); 이런게 있다 정도
+
+
+        //toFixed() 소수점 ()자리까지 
+        var x = 9.656;
+        console.log(x.toFixed(2)); //반올림
+        console.log(x.toFixed(0)); //반올림
+
+
+        //toPrecision() - 정수 소수 다 합쳐서 몇자리로 보여줄 것인가
+        console.log(x.toPrecision(2));
+
+
+        //parseInt() - 전역함수 . 단독  문자를 숫자로
+        var x = "10";
+        console.log(parseInt(x));
+        console.log(parseInt("10.124")); //정수형만 다룸
+        console.log(parseInt("10.66")); //반올림 안하고 그냥 정수값만 가져옴
+        console.log(parseInt("40 20 30")); //첫번째 발견한 것만 가져옴
+        console.log(parseInt("10 years")); //
+        console.log(parseInt("years 40")); // NaN - Not a Number
+        //할인 10% 계산할려고 % 버리고 싶을때 사용 등
+
+        //parseFloat() - 정수 실수 다
+        console.log(parseFloat("10.124"));
+        // html 기본적으로 다 텍스트로(문자)로 . 그래서 그걸 숫자로 인식 할 수 있게 parseFloat으로 묶어준 뒤 계산
+
+
+        console.log(Number.MAX_VALUE);
+        console.log(Number.MAX_SAFE_INTEGER);
+        console.log(Number.MIN_VALUE);
+        console.log(Number.MIN_SAFE_INTEGER);
+        console.log(Number.POSITIVE_INFINITY);
+        console.log(Number.NEGATIVE_INFINITY);
+
+        // console.log(3 / 0); //무한대 잘 고려해야한다. 잘 기억해야한다
+    </script>
+</body>
+
+</html>

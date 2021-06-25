@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //charAt() - 해당 순서에 해당하는 글자만 보여줌
+        var txt = "Hello World"
+        console.log(txt.charAt(0)); //개발자가 확인하기 위해. 나중에 다 주석처리
+
+
+        //charCodeAt() - 해당 순서에 해당하는 캐릭터 코드 문자를 보여줌
+        console.log(txt.charCodeAt(0));
+
+
+        //split() - () 를 기준으로 나누고 배열로 저장해둠
+        //2021-06-25
+        var date = "2021-06-25"
+        var arr = date.split("-");
+        console.table(arr);
+
+
+
+        var tag = "#서울# 양평# 한경닷컴# 개발자품결# 잘한다";
+        console.log(tag.split("#"));
+        // 맨 처음 # 앞에도 나누어 공란으로 저장.
+        //응용하면 다양하게 쓸 수 있음
+
+        //배열  join 
+        console.log(arr.join("."));
+        //스플릿과 합쳐 사용하면. 사용자가 원하는 날짜 포맷을 다 만들 수 있음
+
+
+        //startsWith() - 이 문자열의 시작이 ()로 시작하느냐?
+        var url = "http://naver.com";
+
+        if (url.startsWith("http://") || url.startsWith("https://")) {
+
+        }
+
+        //endsWith() - 이 문자열의 끝이 ()로 끝나냐?
+        var imageFile = "logo.jpg";
+        if (imageFile.endsWith(".jpg") || imageFile.endsWith(".png")) {
+
+        }
+    </script>
+</body>
+
+</html>
