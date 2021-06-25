@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="user_data.js"></script>
+    <script>
+        //나이순 정렬
+        //이름순 정렬
+
+
+        var ageList = userList.sort(function (a, b) {
+            if (a.age > b.age) return 1;
+            else if (a.age < b.age) return -1;
+            else return 0;
+        });
+
+        console.table(ageList)
+
+
+
+        var nameList = userList.sort(function (a, b) {
+            if (a.name > b.name) return 1;
+            else if (a.name < b.name) return -1;
+            else return 0;
+        });
+
+        console.table(nameList)
+
+        // 이해가 안가면 외워야 할 정도로 실무에서 자주 쓰임.
+    </script>
+</body>
+
+</html>
