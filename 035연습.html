@@ -5,6 +5,8 @@
 </head>
 
 <body>
+    <script src="user_data.js"></script>
+
     <script>
         //map() 배열의 하나하나 요소가 오브젝트 일때만 map 사용 100개 들어가면 100개 나옴
         //map 을 통과하면 새로운 키를 갖고 있는 오브젝터 의 배열로 바꿔줌
@@ -42,6 +44,105 @@
         var day = d.getDay();
         console.log("day", day);
         console.log(d.getDay());
+
+
+        userList.sort(function (_id1, _id2) {
+            if (_id1._id > _id2._id) return 1;
+            else if (_id1._id < _id2._id) return -1;
+            else 0;
+
+        });
+        console.table(userList);
+
+        var ageList = userList.filter(function (upUserAge) {
+            return 30 > upUserAge.age
+
+
+
+        });
+
+        console.table(ageList);
+
+
+
+        var d = new Date();
+        console.log(d);
+
+        var timeGet = d.getTime();
+
+        console.log(timeGet);
+
+
+        function aa(n1) {
+            let d = new Date();
+            let plusDay = new Date(d.getTime() + n1 * (60 * 60 * 24 * 1000));
+
+            return plusDay;
+        }
+
+
+        console.log(aa(6));
+
+
+        var userList = [11, 2, 3, 324234, 23, 2, 3, 43, 4, , 5, 6, 45, 34, 2, 41, 23, 14, 5, 456, 456, 47, ];
+
+
+
+        var listUp = [];
+
+        listUp.push(2);
+        console.log(listUp);
+
+        function upList(n1) {
+            var upNum = [];
+            for (var list of userList) {
+
+                if (list > n1) {
+
+                    upNum.push(list);
+                }
+            }
+            return upNum;
+        }
+
+        console.log(upList(25));
+
+
+        var persons = [{
+                firstName: "John",
+                lastName: "Doe",
+                age: 40
+            },
+            {
+                firstName: "재석",
+                lastName: "유",
+                age: 50
+            }
+        ];
+
+        console.log(persons);
+
+        var person = {
+            firstName: "종국",
+            lastName: "김",
+            age: 50
+        };
+
+        persons.push(person)
+        // var persons = [person];
+        console.log(persons);
+
+        var userList2 = persons.map(function (user) {
+            return {
+                fullName: user.firstName + user.lastName,
+                age: user.age + 5,
+                sex: "male"
+            }
+        });
+
+        console.table(userList2);
+
+        console.log(typeof null);
     </script>
 </body>
 
