@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="button" onclick="deleteItem();">삭제</button>
+
+    <a href="https://naver.com" target="_blank">Naver</a>
+
+    <script>
+        //window 객체  - 전역객체 , Gloval 객체
+
+
+        // window.alert("이것은 alert창입니다."); //예쁘지 않아서 다른것 씀
+        // alert("이것은 alert창입니다."); //윈도우 안써도 됨
+
+        //ID를 입력하세요. 같은때
+
+
+        // if (confirm("정말 삭제하시겠습니까?")) {
+        //     //삭제 로직  //확인 true 취소 false 값 리턴.
+        // };
+
+        // 취소. 확인 // 정말 서버에 영향을 주는 결정을 뒤에 두는 것으로 추세가 변함.
+        // 유저는 ux 때문에 본능적으로 오른쪽에 결정버튼이 있다고 생각함 . (악용가능)
+
+
+
+        var pass = prompt("비밀번호를 입력하세요.");
+        // console.log(pass);   // 확인 아무것도 안줌 취소 null 줌
+
+        if (pass == null) {
+            //취소 버튼 누른 경우
+        } else if (pass == "") {
+
+        } else if (pass != "") {
+            console.log(pass);
+        }
+
+
+
+        window.open("https://naver.com"); // 그냥 open 안씀.  open이란 이름을 쓸 경우가 많아서 앞에 window 붙여서 씀
+
+
+
+
+        //setTimeout()  (어떤기능, 얼마후에)
+
+        setTimeout(function () {
+            alert("프로그램 실행");
+        }, 2000); // 2초 . 밀리세컨드
+        //실무에서 많이 사용. 몇초후에 실행.
+
+
+        var count = 0;
+        var fnc = setInterval(function () {
+            if (count < 5) {
+                //5번만 돌려
+                console.log("프로그램 실행");
+                count++;
+            } else {
+                console.log("종료")
+                clearInterval(fnc);
+            }
+
+        }, 1000); //1초. 1초마다 계속 실행
+        // 주식 차트 계속 바뀌는 프로그램
+
+
+
+
+
+
+
+
+
+        function deleteItem() {
+            if (confirm("정말 삭제하시겠습니까?")) {
+                //삭제 로직
+            }
+        }
+    </script>
+</body>
+
+</html>
