@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="user_data.js"></script>
+    <script>
+        // set 객체. 그냥 배열쓰지 잘 안쓰임.
+        // 배열과 유사. 1열로 쭉 나열 . 똑같은 값 추가 안됨 . 유일한 값이어야 함.
+        var arr = []; //간단한 방법
+        arr.push(1);
+        arr.push(3);
+        // var arr1 = new Array();  둘 다 가능
+
+        // Date Set 은 간단한 방법 제공 않는다
+        // 그래서 new set(); 의 방법을 제공
+        var mySet = new Set(); //약식이 없다
+        mySet.add(1);
+        mySet.add(3);
+        mySet.add(12);
+        mySet.add(3); // 뒤에 같은 수를 또 넣으려고 하면 들어가지 않느다. 동일한 값을 갖고 있을 수 없다. 유일한 값만 갖는다.
+        mySet.has(3) //3이 있는지 없는지 확인 true fales로. // 동일한 수를 갖지 않기 때문에 가능
+
+        //언제 써야할까?
+        //몇개의 지역에서 우리 서비스를 이용하는지 알고 싶을 때 같은 경우.
+        //set으로 넣으면 중복되는 지역은 추가 안되고 최종적으로 유일한 지역만 나온다.
+
+        // mySet.delete(3); //3값이 사라짐
+        // mySet.clear(); //전체 사라짐
+
+
+
+
+        //이전에는 오브젝트 생성 // 키로 문자열만 갖음
+        var oUser = {}; //키 밸류 없는 공란
+
+        console.log(oUser["female"]);
+
+
+
+        for (var user of userList) {
+            if (oUser[user.gender]) { //처음 돌릴 때 실행이 되지 않는 이유는 undefined 이기 때문에
+
+                oUser[user.gender] += 1;
+            } else {
+                oUser[user.gender] = 1; // oUser = {female : 1}
+                console.log(oUser);
+                //oUser["female"] = 1; oUser에 젠더 벨류값 넣어준다.
+            }
+        }
+
+        console.table(oUser);
+
+        // var region = {};
+        // region["서울"] = "";
+
+
+
+        //Map   
+        // 오브젝트와 비교해서 알면 좋을 것이다. 
+        //오브젝트는 문자열만, 
+        //but 키로 어떤 타입도 가능
+        //오브젝트는 for문 돌려야 한다. 
+        //맵은 사이즈로 몇개의 키로 데이터가 저장되었는지 알 수 있다.
+        // 오브젝트  for in 문 돌릴때 나오는 키들이 순서대로 나오지 않을 수 있다.
+        // size로 돌리면 순서를 보장해준다.
+
+
+
+        var myMap = new Map(); // 키 밸류 갖고있음
+        myMap.set("female", 1);
+        console.log(myMap.get("female"));
+        myMap.has("female");
+
+        var key1 = {
+            "keyName": 2
+        };
+        var key2 = [2, 3, 4, 5, ];
+
+
+
+
+        myMap.set("female", 1);
+        console.log(myMap.get("female"));
+
+
+
+        for (var user of userList) {
+            if (myMap.has(user.gender)) {
+                myMap.set(user.gender, myMap.get(user.gender) + 1);
+            } else {
+                myMap.set(user.gender, 1);
+            }
+        }
+
+        console.log(myMap.keys());
+        console.log(myMap.values());
+
+        console.log(myMap.clear); // 깨끗히 지움.
+
+        // size 몇 객체를 갖고있나 알 수 있음
+
+
+        const apples = {
+            name: "Appless"
+        };
+
+        myMap.set(apples, 1200);
+        console.log(myMap.get(apples));
+
+
+
+
+
+        myMap.forEach(function (value, key) {
+            console.log(key, value);
+        })
+
+
+        //map  키로 오브젝트르 , 배열 갖을 수 있음
+    </script>
+</body>
+
+</html>

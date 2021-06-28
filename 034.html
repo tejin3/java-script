@@ -110,16 +110,20 @@
         var year = d.getFullYear();
         console.log("year", year);
 
+        // d.setFullYear(2020) //2020년으로 바뀜
+
         var month = d.getMonth();
         console.log("month", month); //달만 0부터 찍힘
+
+        // d.setMonth() // set 함수 1:1 로 다(날짜, 시간, 분 ...) 대응
 
         const monthName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
         console.log(monthName[month]);
         //이렇게 편하게 쓰라고 먼쓰만 0부터 시작
 
-
         var day = d.getDay();
         console.log("day", day);
+
 
         var minute = d.getMinutes();
         console.log("minute", minute);

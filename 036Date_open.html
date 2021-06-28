@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="scripts/moment.min.js"></script>
+    <script>
+        // 오픈소스 라이브러리 쓰는법 . 날짜에 관해
+
+        // https://momentjs.com/  날짜 관련 끝판왕
+        // cdn 컨텐츠 딜리버리 네트워크 : 외부 라이브러리 절대경로로 쓸수 있게 해주는 서비스
+
+        console.log(moment().format("YYYYMMDD"));
+        console.log(moment().format("DDYYYYMM"));
+
+
+        console.log(moment().add(2, "day").format("MMM Do YYYY"));
+
+        // ~~.min.js // min - 미니파일드 : 알아보지 못하는 문자로 변환한 파일 . 뛰어쓰기 공백 한줄로. 주석 삭제
+        // 웹에서 다 까볼 수 있으니까 저작권을 지키기 위해
+        // 파일 사이즈가 가벼워짐
+
+        //물리적 다운로드 // 더 좋음(더 빠름)
+        //절대경로 cdn
+        // <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        // /script
+    </script>
+</body>
+
+</html>

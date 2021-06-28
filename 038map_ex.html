@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="user_data.js"></script>
+
+    <script>
+        //map 객체 이용
+        //userList에 있는 사용자 정보 중 age 를 이용해서
+        //각 연령대 별로 몇명의 사용자가 있는지 확인하느 프로그램 작성
+        //함수명 - getAgeGroup()
+        //return - 각 연령대 별로 몇명 있는지
+
+
+        // 키 20, 30,40  만들어 둔 뒤 해당하면 +1 해주는 것
+
+        // var getAgeGroup = new Map();
+        // getAgeGroup.set(20, 0);
+        // getAgeGroup.set(30, 0);
+        // getAgeGroup.set(40, 0);
+
+        // for (var age of userList) {
+        //     if (age.age < 30) {
+        //         getAgeGroup.set(20, getAgeGroup.set(getAgeGroup.get(getAgeGroup[20]) + 1))
+        //     } else if (age.age >= 30 && age.age <= 40) {
+        //         getAgeGroup.set(getAgeGroup.get(getAgeGroup[30]) + 1)
+        //     } else {
+        //         getAgeGroup.set(getAgeGroup.get(getAgeGroup[40]) + 1)
+
+        //     }
+
+        // };
+
+
+        function getAgeGroup() {
+            let ustAgeMap = new Map();
+            ustAgeMap.set("20g", 0);
+            ustAgeMap.set("30g", 0);
+            ustAgeMap.set("40g", 0);
+
+            for (var user of userList) {
+                if (user.age >= 20 && user.age < 30) {
+                    ustAgeMap.set("20g", ustAgeMap.get("20g") + 1);
+                } else if (user.age >= 30 && user.age < 40) {
+                    ustAgeMap.set("30g", ustAgeMap.get("30g") + 1);
+
+                } else if (user.age >= 40) {
+                    ustAgeMap.set("40g", ustAgeMap.get("40g") + 1);
+
+                }
+
+            }
+            return ustAgeMap;
+        }
+
+
+        function getAgeGroup2() {
+            let userAgeGroup = new Map;
+            //25
+            for (var user of userList) {
+                var ageGroup = user.age.toString().charAt(0) + "0"; //20
+
+                if (userAgeGroup.has(ageGroup)) {
+                    userAgeGroup.set(ageGroup, userAgeGroup.get(ageGroup) + 1);
+                } else {
+                    //0인텍스
+                    //userAgeGroup.set("20", 1);
+                    userAgeGroup.set(ageGroup, 1);
+                }
+            }
+            return userAgeGroup;
+
+        }
+
+
+        console.log(getAgeGroup());
+        console.log(getAgeGroup2());
+
+
+        function getAgeGroup3() {
+            let userAgeGroup = {};
+            //25
+            for (var user of userList) {
+                var ageGroup = user.age.toString().charAt(0) + "0"; //20
+
+                if (userAgeGroup[ageGroup]) {
+                    userAgeGroup[ageGroup] += 1;
+                } else {
+                    userAgeGroup[ageGroup] = 1;
+                }
+            }
+            return userAgeGroup;
+
+        }
+        console.log(getAgeGroup3());
+    </script>
+</body>
+
+</html>
