@@ -14,8 +14,51 @@
         //키 벨류 값을 갖고 있어서
         //받으면 Object 형식으로 쓸 수 있어짐
 
+        //배열이면 JSON 으로 못씀
+        //오브젝트 형식으로 바꿔서 사용해야함.
 
-        const newsList =
+
+        // const newsList =
+        var productlist = {
+            dataList: [{
+                    name: "솔의눈",
+                    price: 700
+                },
+                {
+                    name: "커피",
+                    price: 700
+                },
+                {
+                    name: "파워레이드",
+                    price: 1200
+                },
+                {
+                    name: "오렌지",
+                    price: 1000
+                },
+                {
+                    name: "보리차",
+                    price: 1200
+                },
+                {
+                    name: "밀키스",
+                    price: 800
+                }
+            ]
+        };
+        console.log(productlist);
+
+        var jsonString = JSON.stringify(productlist); //더이상 오브젝트 파일이 아니라 문자열로 바뀜
+        //url 에 찍히는 것은 전부 문자열이어야 함. 
+        //url 로 오브젝트 못보냄 (자바일수 있고 다른 프로그램일 수 있으니까)
+
+        console.log(jsonString);
+
+        var jsonObject = JSON.parse(jsonString);
+
+        console.log(jsonObject);
+
+        // JSON  키 무조건 " " 해줘야함/
     </script>
 </body>
 
