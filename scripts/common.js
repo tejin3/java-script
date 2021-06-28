@@ -12,7 +12,7 @@ function getAgeGroup(userList, keyAge) {
             ageGroup = user[keyAge].toString().substr(0, 2) + "0";
 
         } else {
-            ageGroup = user[keyAge].toString().charAt(0);
+            ageGroup = user[keyAge].toString().charAt(0) + "0";
         }
 
 
@@ -63,4 +63,4 @@ function rspPlayer(userRsp) {
 }
 
 
-console.table(rspPlayer("가위"));
+// console.table(rspPlayer("가위"));

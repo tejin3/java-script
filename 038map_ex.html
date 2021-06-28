@@ -88,17 +88,22 @@
 
                 // //치명적인 문제 4살 - 40대 , 100살 이상 - 10대
                 // var ageGroup = "";
+
                 // if (user.age < 10) {
                 //     ageGroup = "0";
+
                 // }else if (user.age >= 100) {
-                //     ageGroup = userage.toString().
-                // }
+                //     ageGroup = user.age.toString().substr(0, 2) + "0";                  
+                // user.age 정보를 문자열로 바꾼뒤 첫번째 부터 둘째 뒤까지 잘라낸 뒤 문자열 "0"을 붙인다.
+                //ex) 144 -> 14 -> 140
 
+                // }else { ageGroup = user.age.toString().charAt(0) + "0"}
+                //ex) 24 -> 2 -> 20
 
-                if (userAgeGroup[ageGroup]) {
-                    userAgeGroup[ageGroup] += 1;
+                if (userAgeGroup[ageGroup]) { // userAgeGroup배열의 키 값으로 ageGroup이 있으면 실행
+                    userAgeGroup[ageGroup] += 1; //해당 userAgeGroup배열의 ageGroup의 키의 벨류 값을 +1 해준다.
                 } else {
-                    userAgeGroup[ageGroup] = 1;
+                    userAgeGroup[ageGroup] = 1; // userAgeGroup 오브젝트에 ageGroup : 1 이라는 키 벨류 값을 저장.
                 }
             }
             return userAgeGroup;

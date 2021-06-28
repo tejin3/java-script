@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //백화점 주차요금 계산 함수 만들기
+        //주차요금 알려주는 
+        //주차 
+        //파라미터 (주차시간(시간으로 받음), 구매한 상품금액)
+
+
+        //함수명 calParkingCost
+        //파라미터1 - 총 주차시간 (3. 3시간) allTime
+        //파라미터2 - 총 구매금액 allPrice
+
+        //new Date()
+        //getDay 0,6 은 주말
+
+        //1분 추가되면 돈 올라간다. Math.ceil 처리해서 올림처리
+
+        // function calParkingCost(allTime, allPrice) {
+        //     var d = new Date();
+        //     var day = d.getDay;
+        //     var priceMinute = Math.ceil(allTime * 60);
+
+        //     var parkingCost = 0;
+
+        //     if (day == 0 || day == 6) {
+        //         if (priceMinute <= 30) {
+        //             parkingCost = 5000 - ((allPrice >= 50000) ? 5000 : 0);
+        //         } else if (priceMinute > 30) {
+        //             parkingCost = 5000 + ((priceMinute - 30) * 2000);
+        //         }
+        //         return parkingCost - ((allPrice >= 150000) ? 35000 : (allPrice <= 100000) ? 23000 : 11000);
+
+        //     } else if (day == 1 && day == 2 && day == 3 && day == 4 && day == 5) {
+        //         if (priceMinute <= 30) {
+        //             parkingCost = 2000 - ((allPrice >= 50000) ? 2000 : 0);
+        //         } else if (priceMinute > 30) {
+        //             parkingCost = 2000 + ((priceMinute - 30) * 1000);
+        //         }
+        //         return parkingCost - ((allPrice >= 150000) ? 17000 : (allPrice <= 100000) ? 11000 : 5000);
+
+        //     }
+        // }
+
+        // console.log(calParkingCost(6, 60000));
+
+
+        function calParkingCost(parkingHours, purchaseAmount) {
+            const isWeekend = ((new Date()).getDay() % 6) == 0 ? true : false; //일요일 0 토요일 6 이라서 나머지 0
+            //주말인지, 평일인지 구한다.
+            //getDay 0 이거나 6 이면 주말.  같은 말.
+
+
+            //사용자가 입력한 총 주차 시간을 10분 단위로 바꾼다.
+            //    var parkingMinute = parkingHours * 60;
+
+            if (purchaseAmount >= 150000) {
+                parkingHours = parkingHours - 3; //총 시간에서 구매 금액이 15만원 이상이면 3시간을 뺌
+            } else if (purchaseAmount >= 100000) {
+                parkingHours = parkingHours - 2; //총 시간에서 구매 금액이 10만원 이상이면 2시간을 뺌
+            } else if (purchaseAmount >= 50000) {
+                parkingHours = parkingHours - 1; //총 시간에서 구매 금액이 5만원 이상이면 1시간을 뺌
+            }
+
+            if (parkingHours <= 0) {
+                return 0;
+            } else {
+                var parkingMinutes = parkingHours * 60; //120분
+                if (parkingMinutes <= 30) {
+                    return isWeekend ? 5000 : 2000;
+                } else {
+                    //평일 60분 - 30분 2000원 + 30/10 *1000
+                    //120분 - 30분, 90분/10*1000
+
+                    return (isWeekend ? 5000 : 2000) + ((parkingMinutes - 30) / 10) * (isWeekend ? 2000 : 1000);
+                }
+            }
+
+        }
+        console.log(calParkingCost(4, 100000));
+    </script>
+</body>
+
+</html>

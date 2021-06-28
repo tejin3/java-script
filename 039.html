@@ -6,28 +6,29 @@
 
 <body>
     <script src="user_data.js"></script>
-    <script src="script/common.js"></script>
+    <script src="scripts/common.js"></script>
     <script>
-        var ageGroup = getAgeGroup(userList, "age");
-        console.table(ageGroup);
+        // var ageGroup = getAgeGroup(userList, "age");
+        // console.table(ageGroup);
 
 
         var users = [{
-                name: "유재석",
-                nai: 50
+                "name": "유재석",
+                "nai": 50
             },
             {
-                name: "김종국",
-                nai: 46
+                "name": "김종국",
+                "nai": 46
 
             },
             {
-                name: "하하",
-                nai: 41
+                "name": "하하",
+                "nai": 41
             }
         ];
 
-        var ageGroup =
+        var ageGroup = getAgeGroup(users, "nai"); //getAgeGroup 나이 대 별로 분류 후 카운트하는 함수
+        console.table(ageGroup);
     </script>
 </body>
 
