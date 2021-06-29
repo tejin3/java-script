@@ -1,8 +1,8 @@
 /**
  * 참조 목록에서 나이대별로 분류 후 몇명인지 카운트
- * @param {object} userList  
- * @param {} keyAge 
- * @returns 
+ * @param {object} userList  참조목록
+ * @param {} keyAge 나이 값이 들어있는 키 이름
+ * @returns  10단위로 나눈 나이 분류 : 해당 분류에 몇명이나 포함되는지
  */
 function getAgeGroup(userList, keyAge) {
     let userAgeGroup = {};
