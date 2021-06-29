@@ -12,7 +12,7 @@
     <script>
         //Promise
 
-        const url = "https://c59a744d-4a3f-4dfe-a8dc-8cf170d5301a.mock.pstmn.io/getUserList";
+        // const url = "https://c59a744d-4a3f-4dfe-a8dc-8cf170d5301a.mock.pstmn.io/getUserList";
 
         // var data = axios.get(url);  //서버로 요청을 보내고 데이터를 받을 려면 시간이 걸리는데 그 전에 콘솔이 실행되어 버려서 
         // console.log(data);   //안뜸
@@ -20,39 +20,165 @@
         // new Map()
 
         //라이브러리 상용하는 문법. 
-        function getData() {
-            return new Promise(function (resolve, reject) {
-                axios.get(url).then(function (response) {
-                    resolve(response.data);
-                });
-            });
+        // function getData() {
+        //     return new Promise(function (resolve, reject) {
+        //         axios.get(url).then(function (response) {
+        //             resolve(response.data);
+        //         });
+        //     });
+        // }
+
+        // getData().then(function (jsonData) {
+        //     console.log(jsonData.data);
+        // });
+
+        // //자바스크립트
+        // //클라이언트 자료 보내줘 > http requst  //서버 http response  . 리퀘스트 > 리스폰 > 리퀘스트 > 리스폰 이런 방식으로 작동했었음
+        // //보내고 받아야만 다음 동작 가능 보내고 받고 보내고 받고
+
+        // //A jax   보내고 받지 않아도 또 보낼 수 있음
+
+
+        // const url1 = "https://c59a744d-4a3f-4dfe-a8dc-8cf170d5301a.mock.pstmn.io/getDrinkList";
+
+        // function getData1() {
+        //     return new Promise(function (resolve, reject) {
+        //         axios.get(url1).then(function (response) {
+        //             resolve(response.data);
+        //         });
+        //     });
+        // }
+
+        // getData1().then(function (jsonData) {
+        //     console.log(jsonData.data);
+        // });
+
+
+        //이런 형식으로 JSON으로 넣는다.
+        // {"data":[{
+        //             "name": "솔의눈",
+        //             "price": 700
+        //         },
+        //         {
+        //             "name": "커피",
+        //             "price": 700
+        //         },
+        //         {
+        //             "name": "파워레이드",
+        //             "price": 1200
+        //         },
+        //         {
+        //             "name": "오렌지",
+        //             "price": 1000
+        //         },
+        //         {
+        //             "name": "보리차",
+        //             "price": 1200
+        //         },
+        //         {
+        //             "name": "밀키스",
+        //             "price": 800
+        //         }
+        //     ]
+        // }
+
+
+        //Async-Await   기다려주겠다 비동기 방식 처리 -- 안됨 확인요
+
+        const url2 = "https://c59a744d-4a3f-4dfe-a8dc-8cf170d5301a.mock.pstmn.io/";
+
+
+        // //데이터 가져오는데 가져올때 까지 기다렸다 가져온다.
+        async function api(url2) {
+            return (await axios.get(url2)).data;
         }
 
-        getData().then(function (jsonData) {
-            console.log(jsonData.data);
-        });
 
-        //자바스크립트
-        //클라이언트 자료 보내줘 > http requst  //서버 http response  . 리퀘스트 > 리스폰 > 리퀘스트 > 리스폰 이런 방식으로 작동했었음
-        //보내고 받아야만 다음 동작 가능 보내고 받고 보내고 받고
-
-        //A jax   보내고 받지 않아도 또 보낼 수 있음
-
-
-        const url1 = "https://c59a744d-4a3f-4dfe-a8dc-8cf170d5301a.mock.pstmn.io/getDrinkList";
-
-        function getData1() {
-            return new Promise(function (resolve, reject) {
-                axios.get(url1).then(function (response) {
-                    resolve(response.data);
-                });
-            });
+        //
+        async function getData2(path) {
+            var data = (await api(url2 + path));
+            console.log(path, data);
         }
 
-        getData1().then(function (jsonData) {
-            console.log(jsonData.data);
+        async function getUserList() {
+            var data = (await api(url + "getUserList"));
+            console.log(data);
+        }
+
+        getData2("getUserList");
+        getData2("getDrinkList");
+
+
+        // fetch()
+
+        const url3 = "https://c59a744d-4a3f-4dfe-a8dc-8cf170d5301a.mock.pstmn.io/";
+
+
+        fetch(url3 + "getUserList").then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log(data);
         });
     </script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+  <script>
+    //Promise
+    const url = "https://9e98c7ae-287c-469f-bb47-6df9b7b32036.mock.pstmn.io/";
+
+    // var data = axios.get(url);
+    // console.log(data);
+
+    // function getData() {
+    //   return new Promise(function (resolve, reject) {
+    //     axios.get(url).then(function (response) {
+    //       resolve(response.data);
+    //     });
+    //   });
+    // }
+
+    // getData().then(function (jsonData) {
+    //   console.log(jsonData.data);
+    // });
+
+    //Async-Await
+
+    // async function api(url) {
+    //   return (await axios.get(url)).data;
+    // }
+
+    // async function getData(path) {
+    //   var data = (await api(url + path));
+    //   console.log(path, data);
+    // }
+
+    // async function getUserList() {
+    //   var data = (await api(url + "getUserList"));
+    //   console.log(data);
+    // }
+
+    // async function getDrinkList() {
+    //   var data = (await api(url + "getDrinkList"));
+    //   console.log(data);
+    // }
+
+    // getUserList();
+
+    // getData("getUserList");
+    // getData("getDrinkList");
+
+    //fetch()
+
+    fetch(url + "getUserList").then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      console.log(data);
+    });
+  </script> -->
+
+
 </body>
 
 </html>

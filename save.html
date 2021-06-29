@@ -118,6 +118,34 @@
         // <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
         // /script
     </script>
+
+    <script>
+        //가짜 서버에서 데이터 가져오기 . 딜레이 주면서
+
+        const url2 = "https://c59a744d-4a3f-4dfe-a8dc-8cf170d5301a.mock.pstmn.io/";
+        //내 가짜서버 주소
+
+        // //데이터 가져오는데 가져올때 까지 기다렸다 가져온다.
+        async function api(url2) {
+            return (await axios.get(url2)).data;
+        }
+
+
+        //내 가짜 서버 주소에서 세부이름으로 들어가는 법
+        async function getData2(path) {
+            var data = (await api(url2 + path));
+            console.log(path, data);
+        }
+
+        async function getUserList() {
+            var data = (await api(url + "getUserList"));
+            console.log(data);
+        }
+
+        getData2("getUserList");
+        getData2("getDrinkList");
+    </script>
+
     </script>
 </body>
 
