@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button type="button" onclick="doSearch(this);">조회</button>
+    <select name="" id="" onchange="doChange(this)">
+        <option value="1">A</option>
+        <option value="2">B</option>
+        <option value="3">C</option>
+        <option value="4">D</option>
+    </select>
+    <script>
+        //this
+
+        console.log(this);
+
+        function myFunction() {
+            console.log(this);
+        }
+
+        myFunction();
+
+        //HTML DIM요소에서 이벤트가 수행이 될 때 호출하는 함수에 this 를 파라미터 값으로 전달하면,
+        //이때 this  이벤트가 일어나는 HTML DOM요소 그 자체를 의미
+
+        function doSearch(obj) {
+            console.log(obj);
+        }
+
+        function doChange(obj) {
+            console.log(obj);
+            console.log(obj.value);
+
+        }
+
+
+        //세번째
+        let person = {
+            firstName: "Jhon",
+            lastName: "Doe",
+            getFullName: function () {
+                return this.firstName + " " + this.lastName; //이곳에서의 this 는 이 오브젝트 자체
+            }
+        }
+
+        // person.firstName
+        // person["firstName"]
+
+
+        //this 는 위치에 따라 달라진다.
+    </script>
+
+</body>
+
+</html>

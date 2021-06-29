@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Default Function parameter -  함수의 파라미터 기본 값
+        //혹시 함수에 파라미터 값을 넣지 않았을 때 기본적으로 적용되는 함수의 파라미터 값.
+        //파라미터 = ""
+
+        function say(message = "파라미터가 안들어왔네요.") {
+            console.log(message);
+        }
+
+        say("함수 호출 - 메세지");
+        say();
+
+
+        function add(x1 = 1, x2 = 1) {
+            if (x1 != undefined && x2 != undefined) {
+                return x1 + x2;
+            } else {
+
+            }
+        }
+
+        console.log(add(5));
+        console.log(add());
+
+
+        //만약에 비행기 좌석을 예매 
+        //1하나 예매 
+        //1을 서버에 던져 줘야함
+        //대부분의 비행기 예매하는 사람은 (90%) 1매 구매
+        //기본적으로 1 선정해두면 . 개발자가 일부러 전달하지 않는다.
+        //그러면 전달할 때 사용하는 네트워크 비용이 줄어든다.
+        //하지만 보통 이렇게 만들지는 않음.
+        //사용자가 입력하는 것에 대하여 디폴트 값을 선정 해두는 경우가 많음.
+    </script>
+</body>
+
+</html>
