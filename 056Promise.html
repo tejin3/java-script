@@ -20,17 +20,22 @@
         // new Map()
 
         //라이브러리 상용하는 문법. 
-        // function getData() {
-        //     return new Promise(function (resolve, reject) {
-        //         axios.get(url).then(function (response) {
-        //             resolve(response.data);
-        //         });
-        //     });
-        // }
+        function getData() {
+            return new Promise(function (resolve, reject) {
 
-        // getData().then(function (jsonData) {
-        //     console.log(jsonData.data);
-        // });
+                reject(new Error("Request is failed"));
+                // 시간이 지나도 반응없을 때 끝내려고
+                axios.get(url).then(function (response) {
+                    resolve(response.data);
+                });
+            });
+        }
+
+        getData().then(function (jsonData) { //리졸브에 상응
+            console.log(jsonData.data);
+        }).catch(function (err) { //잡아내겠다 리젝트에 상응
+            console.log(err)
+        });
 
         // //자바스크립트
         // //클라이언트 자료 보내줘 > http requst  //서버 http response  . 리퀘스트 > 리스폰 > 리퀘스트 > 리스폰 이런 방식으로 작동했었음
@@ -86,7 +91,7 @@
         //Async-Await   기다려주겠다 비동기 방식 처리 -- 안됨 확인요
 
         const url2 = "https://c59a744d-4a3f-4dfe-a8dc-8cf170d5301a.mock.pstmn.io/";
-
+        //내 가짜서버 주소
 
         // //데이터 가져오는데 가져올때 까지 기다렸다 가져온다.
         async function api(url2) {
@@ -94,7 +99,7 @@
         }
 
 
-        //
+        //내 가짜 서버 주소에서 세부이름으로 들어가는 법
         async function getData2(path) {
             var data = (await api(url2 + path));
             console.log(path, data);

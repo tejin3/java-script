@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //strict mode  
+        //자바스크립트는 에러를 에러로 안보고 알아서 해결해줘서 문제가 생길 수 있음
+
+        //그래서 엄격하게 에러 다 잡아낼거야
+
+        "use strict"; //엄격하게 다 잡아버리겠다.
+
+
+        function myFunction() {
+            y = 2; // 함수로 정의 안해도 함수로 선언해줌
+            console.log(y);
+
+        }
+
+        myFunction();
+
+        console.log(y); // 괄호 안의 y 를 불러와 버림. 뭄제가 생길 가능성 많음
+
+
+        function myFunction() {
+            "use strict"; //안에든 밖에든 갠춘
+
+            y = 2;
+            console.log(y);
+
+        }
+    </script>
+</body>
+
+</html>

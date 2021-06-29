@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //try-catch  무언가를 시도해서 에러나면 잡아내겠다.
+        try {
+            consoel.log("콘솔에 출력"); //일부러 콘솔 틀림
+
+        } catch (error) {
+            console.log(error.name);
+            console.log(error.message);
+
+        }
+
+        var x = 2;
+        var y = 3;
+
+        console.log(x + y);
+
+
+        try {
+            if (x == 0) {
+                throw "value is zero." // 쓰로우 만나면 무조건 캣치로 간다/.
+            }
+        } catch (error) {
+            console.log(error);
+        } finally { // 트라이 안에 정상이여도 파이널은 마지막에 무조건 실행
+            console.log("try/catch를 모두 실행한 후 반드시 실행하는 부분")
+        }
+    </script>
+</body>
+
+</html>
