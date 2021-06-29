@@ -43,11 +43,17 @@
 //seungwon.go@gmail.com
 //aaa234@abc.co.kr
 //afef@foeof - 없음
-var regexp4 = /^(\w+\d*)+@\W+(\.\w{2,3})+$/;
-//  \w 문자   \w+문자가 최소한 하나이상 들어거야 한다  \. 이렇게해야 . 인식  $무조건 끝난다.
 
-console.log(regexp4.test("seun3333@gmail.com"));
 
+// // //  \w 문자   \w+문자가 최소한 하나이상 들어거야 한다  \. 이렇게해야 . 인식  $무조건 끝난다.
+var regexp4 = /^\w+@\w+(\.\w{2,3})+$/;
+
+console.log(regexp4.test("seun@gmail.com"));
+
+
+// var regexp4 = /^\w+@\w+(\.\w{2,3})+$/;
+
+// console.log(regexp4.test("seun@gmail.com"));
 //글로벌 나가면 우편번호 체계가 다 다르다. 
 //계좌번호도 다 다르다.
 //제대로 작성했는지 체크할려면 나라마다 다르게 정규식 작성해서 체크해야한다

@@ -12,24 +12,26 @@
     <script>
         //Promise
 
-        // const url = "https://c59a744d-4a3f-4dfe-a8dc-8cf170d5301a.mock.pstmn.io/getUserList";
+        const url = "https://c59a744d-4a3f-4dfe-a8dc-8cf170d5301a.mock.pstmn.io/getUserList";
 
         // var data = axios.get(url);  //서버로 요청을 보내고 데이터를 받을 려면 시간이 걸리는데 그 전에 콘솔이 실행되어 버려서 
         // console.log(data);   //안뜸
 
         // new Map()
 
-        //라이브러리 상용하는 문법. 
+        //라이브러리 상용하는 문법. 이해한 후 대응해서 쓰면됨
         function getData() {
             return new Promise(function (resolve, reject) {
 
-                reject(new Error("Request is failed"));
-                // 시간이 지나도 반응없을 때 끝내려고
+                // reject(new Error("Request is failed"));
+                //강제로 리젝트 실행
+                //시간이 지나도 반응없을 때 끝내려고
                 axios.get(url).then(function (response) {
                     resolve(response.data);
                 });
             });
         }
+        //resolve, reject, response 기본값
 
         getData().then(function (jsonData) { //리졸브에 상응
             console.log(jsonData.data);
@@ -114,16 +116,33 @@
         getData2("getDrinkList");
 
 
-        // fetch()
+        //fetch()
 
         const url3 = "https://c59a744d-4a3f-4dfe-a8dc-8cf170d5301a.mock.pstmn.io/";
 
 
         fetch(url3 + "getUserList").then(function (response) {
             return response.json();
-        }).then(function (data) {
-            console.log(data);
+        }).then(function (data1) { //.then 필요한 이유는  위에서 json 파일을 우리가 쓸 수 있도록 변환하는데 시간이 필요함.
+            console.log("1", data1);
+            for (var user of data1.data) {
+                if (user.gender == "female") {
+                    console.log("2", user);
+                }
+            }
         });
+
+
+        // fetch(url + "getUserList").then(function (response) {
+        //   return response.json();
+        // }).then(function (data) {
+        //   console.log(data);
+        //   for (var user of data.data) {
+        //     if (user.gender == "female") {
+        //       console.log(user);
+        //     }
+        //   }
+        // });
     </script>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

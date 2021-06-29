@@ -4,7 +4,8 @@ function getScores() {
     return [70, 21, 100, 50, 12, 33, 45];
 }
 
-var [x, y, ...args] = getPerson();
+var [x, y, ...arg1s] = getScores();
+console.log(arg1s);
 // 두개만 이름 할당되고 나머지는 args에 배열로 담긴다.
 
 // console.log(x);
@@ -28,6 +29,9 @@ var [firstName, lastName, [color1, color2, color3]] = getPerson();
 console.log(color1);
 
 var [firstName, lastName, favoritcolor] = getPerson();
+console.log(firstName);
+
+console.log(favoritcolor);
 
 
 
