@@ -223,12 +223,12 @@
         //사용하는 금액
         function useCoin(drinkId) {
 
-            var output = drinkList.filter(function (drinkId) {
-                return drinkList.drinkId == drinkId;
-            });
+            var output = drinkList.filter((drinkId) => drinkList.drinkId == drinkId);
+
             console.log(output);
         }
 
+        // var drinks = drinkList.filter((drink) => drink.price <= 1000);
 
         //     inConinV -= ;
         //     return inConinV;

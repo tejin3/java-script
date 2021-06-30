@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="asdff" id="txt1" value="a">
+    <input type="text" name="asdff" id="txt2" value="a">
+
+    <!-- 텍스트 창에 value 값이 들어가 있는것 -->
+
+    <button onclick="getInputValue();">값 가져오기</button>
+    <button onclick="setInputValue();">값 넣어주기</button>
+    <button onclick="sum();">더하기</button>
+
+    <script>
+        function sum() {
+            var ele = document.getElementById("txt1");
+            var ele2 = document.getElementById("txt2")
+
+            console.log(parseFloat(ele.value) + parseFloat(ele2.value));
+        }
+
+
+        function getInputValue() {
+            var ele = document.getElementById("txt1"); // 접근하는 방법
+            console.log(ele.value + 5); //인풋텍스트에는 문자열로 들어가서 35 나옴
+            // .어트리뷰(name id value) 가져오기
+            // console.log(ele.getAttribute("name")); //value 는 못가져옴
+        }
+
+        function setInputValue() {
+            var ele = document.getElementById("txt1");
+            ele.value = "ABC";
+        }
+    </script>
+</body>
+
+</html>

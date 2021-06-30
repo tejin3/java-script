@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button onclick="myFunction();">클릭</button>
+    <button id="btn">클릭2</button>
+    <select name="" id="sel">
+        <option value="a">a</option>
+        <option value="b">b</option>
+
+    </select>
+    <script>
+        function myFunction() {
+            console.log("버튼 클릭 - 함수 호출");
+        }
+
+
+        // document.getElementById("sel").addEventListener("click", myFunction); //click - 이벤트 
+        document.getElementById("sel").addEventListener("change", myFunction); //click - 이벤트 
+
+        //협업할 때 디자인이 바뀌더라도 아이디만 동일하면 다시 사용할 수 있다.
+        //재 작업의 확률이 줄어든다.
+    </script>
+</body>
+
+</html>

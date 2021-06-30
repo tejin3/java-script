@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let drinkList = [{
+                drinkId: "1",
+                drinkName: "코카콜라",
+                price: 700,
+                stock: 5
+            },
+            {
+                drinkId: "2",
+                drinkName: "오렌지주스",
+                price: 1200,
+                stock: 5
+            },
+            {
+                drinkId: "3",
+                drinkName: "커피",
+                price: 500,
+                stock: 5
+            },
+            {
+                drinkId: "4",
+                drinkName: "물",
+                price: 700,
+                stock: 5
+            },
+            {
+                drinkId: "5",
+                drinkName: "보리차",
+                price: 1200,
+                stock: 5
+            },
+            {
+                drinkId: "6",
+                drinkName: "포카리",
+                price: 1000,
+                stock: 5
+            },
+            {
+                drinkId: "7",
+                drinkName: "뽀로로",
+                price: 1300,
+                stock: 5
+            }
+        ];
+
+        for (var i = 0; i < drinkList.length; i++) {
+            if (drinkList[i].price <= 1000) {
+                console.log(drinkList[i]);
+            }
+
+        }
+
+        for (var drink of drinkList) {
+            if (drink.price <= 1000) {
+                console.log(drink);
+            }
+        }
+
+        var drinks = drinkList.filter(function (drink) { //drink 에 drinkList를 읽는것을  저장
+            // if (drink.price <= 1000) {
+            //     return reue;
+            // } else {
+            //     return false;
+            // }
+
+            return drink.price <= 1000; //위와 같음. 이것 자체가 트루 펄스 값을 갖음. 맞으면 트로 틀리면 펄스
+        });
+
+        var drinks = drinkList.filter((drink) => drink.price <= 1000); //위와 같음. 화살표 함수의 축약기능으로 다 빼버렸음.
+
+
+
+        console.log(drinks);
+    </script>
+</body>
+
+</html>

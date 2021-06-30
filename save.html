@@ -192,6 +192,17 @@
 
 
         //진짜 많이 쓰임
+
+
+        // 시간 원하는 날짜만큼 더하고 빼기
+        function getIntervalDate(day) {
+            var now = new Date();
+
+
+            return new Date(now.getTime() + (60 * 60 * 24 * 1000 * day));
+        }
+
+        console.log(getIntervalDate(-9));
     </script>
 
     </script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function add(n1, n2) {
+            if (n1 != undefined && n2 != undefined) {
+                return n1 + n2;
+            } else {
+                return 0;
+            }
+        }
+
+        function add2(n1, n2) {
+            if (n1 == undefined || n2 == undefined) {
+                return 0;
+            }
+            return n1 + n2;
+        }
+
+        //리턴을 만나는 순간 함수는 종료
+
+        var sum = add2(3, 0);
+
+        console.log(sum);
+    </script>
+</body>
+
+</html>

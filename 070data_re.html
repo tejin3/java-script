@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var d = new Date(); //로컬 피씨에 있는 시간
+
+        // var arr = [];
+        // var arr = new Array(); 위와 같은데 약식기호로 사용한 것
+
+        console.log(d);
+        //html 에서는 브라우저가 해당 지역을 체크. 해당 지역에 해당하는 로컬시간을 기준으로 알려준다.
+        //하지만 자바스크립트에서 찍어보면 기준시간(영국 그리니치 천문대 시간)을 알려준다.
+
+
+        var year = d.getFullYear();
+        var month = d.getMonth() + 1; //1월은 0
+        var day = d.getDate();
+
+        // if(month < 10) month = "0" + month;
+
+        // console.log(year + "-" + month.toString().padStart(2, 0) + "-" + date);
+
+        console.log(d.getTime());
+
+
+        function getIntervalDate(day) {
+            var now = new Date();
+
+
+            return new Date(now.getTime() + (60 * 60 * 24 * 1000 * day));
+        }
+
+        console.log(getIntervalDate(-9));
+    </script>
+</body>
+
+</html>
