@@ -89,33 +89,33 @@
             </button>
         </div>
         <div class="drink">
-            <button onclick="useCoin('a5')">보리차<br>1200
+            <button class="a5" onclick="useCoin('a5')">보리차<br>1200
                 <br>재고:<span value="" id="a5">5</span></button>
         </div>
         <div class="drink">c</div>
         <div class="drink">d</div>
         <div class="drink">
-            <button onclick="useCoin('a3')">커피<br>500
+            <button class="a3" onclick="useCoin('a3')">커피<br>500
                 <br>재고:<span value="" id="a3">5</span></button>
         </div>
         <div class="drink">f</div>
         <div class="drink">g</div>
         <div class="drink">h</div>
         <div class="drink">
-            <button onclick="useCoin('a1')">코카콜라<br>700
+            <button class="a1" onclick="useCoin('a1')">코카콜라<br>700
                 <br>재고:<span value="" id="a1">5</span></button>
         </div>
         <div class="drink">
-            <button onclick="useCoin('a6')">포카리<br>1000
+            <button class="a6" onclick="useCoin('a6')">포카리<br>1000
                 <br>재고:<span value="" id="a6">5</span></button>
         </div>
         <div class="drink">
-            <button onclick="useCoin('a7')">뽀로로<br>1300
+            <button class="a7" onclick="useCoin('a7')">뽀로로<br>1300
                 <br>재고:<span value="" id="a7">5</span></button>
         </div>
         <div class="drink">d</div>
         <div class="drink">
-            <button onclick="useCoin('a2')">오렌지주스<br>1200
+            <button class="a2" onclick="useCoin('a2')">오렌지주스<br>1200
                 <br>재고:<span value="" id="a2">5</span></button>
         </div>
         <div class="drink">f</div>
@@ -279,8 +279,16 @@
             }
             if (output.price > inCoinV) {
                 var notEnough = output.price - inCoinV;
-                systemMassege.insertAdjacentHTML("beforeend", `<p>사용가능금액이 ${notEnough}원 부족합니다. </p>`);
 
+                systemMassege.insertAdjacentHTML("beforeend",
+                    `<p>사용가능금액은 ${inCoinV}원 입니다.</p>`
+                );
+                systemMassege.insertAdjacentHTML("beforeend",
+                    `<p>${output.drinkName}을 사기에는 ${notEnough}원 부족합니다.</p>`
+                );
+                systemMassege.insertAdjacentHTML("beforeend",
+                    `<p>${notEnough}원을 더 투입하세요. </p>`
+                );
             }
 
             document.getElementById("useableCoinI").value = inCoinV;
@@ -312,8 +320,9 @@
         function colorChange() {
             for (var price1 of drinkList) {
                 if (inCoinV >= price1.price)
-                    console.log(document.getElementsByClassName("a4"));
-
+                    var colorC = price1.drinkId
+                // document.getElementsByClassName(colorC).style.backgroundcolor = red;
+                //클래스 이름으로 버튼에 접근해서 백그라운드 컬러를 바꾼다.
             }
         }
 
