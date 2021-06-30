@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 이미 갖고 온 데이터를 자기가 쓰기 좋게 변경 시키는 것이 좋을 수 있다. -->
+
+    <button onclick="myFunction();">클릭</button>
+    <button id="btn">클릭</button>
+
+
+
+    <select name="" id="" onchange="selectCountry(this)">
+        <option value=""></option>
+        <option value="kr">대한민국</option>
+        <option value="jp">일본</option>
+
+    </select>
+
+    <select name="" id="sel_city"></select>
+
+
+    <select name="" id="" onchange="selectCity(this)">
+        <option value="서울">서울</option>
+        <option value="제주">제주</option>
+        <option value="대전">대전</option>
+        <option value="부산">부산</option>
+        <option value="포항">포항</option>
+
+    </select>
+
+
+    <script>
+        var oCity = {
+            "ko": [{
+                    cityCode: "02",
+                    cityName: "서울"
+                },
+                {
+                    cityCode: "064",
+                    cityName: "제주"
+                }
+            ],
+            "jp": [{
+                cityCode: "11",
+                cityName: "도쿄"
+            }]
+        };
+
+        function selectCountry(ele) {
+            console.log(ele.value);
+            var h = [];
+            if (ele.value != "") {
+                for (var city of oCity[ele.value]) {
+                    h.push('<option value="${city.cityCode}">${city.cityName}</option>')
+                }
+            }
+        }
+
+
+
+        function selectCity(ele) {
+            console.log(ele.value);
+        }
+
+
+
+
+        function myFunction() {
+            console.log("이벤트 onclick을 통해서 발생");
+        }
+
+        //addEventListener 이벤트 발생하는걸 들을꺼야 , 
+        document.getElementById("btn").addEventListener("click", myFunction);
+
+        document.getElementById("btn").addEventListener("click", function () {
+            console.log("이벤트 클릭");
+        }); // 이 방법은 id 만 동일하면 코드를 바꿀 필요가 없음.
+    </script>
+</body>
+
+</html>
