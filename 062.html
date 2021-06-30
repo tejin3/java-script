@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td {
+            border-collapse: collapse;
+        }
+
+        table {
+            border: 2px solid black;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <select name="" id="sel_gender">
+        <!-- <option value="male">남자</option>
+        <option value="female">여자</option> -->
+
+    </select>
+
+
+
+    <table id="tb">
+        <button onclick="doSearch()">조회</button>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>성별</th>
+                <th>회사</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+
+    <script src="user_data.js"></script>
+    <script>
+        function doSearch() {
+            var gender = document.getElementById("sel_gender").value;
+            var h = [];
+
+            // 문자열 더하는 것 보다 이 방법이 빠르다.
+            for (var user of userList) {
+                if (gender == user.gender) {
+                    h.push("<tr>");
+                    h.push("<td>" + user.name + "</td>");
+                    h.push("<td>" + user.gender + "</td>");
+                    h.push("<td>" + user.company + "</td>");
+
+                    h.push("</tr>");
+                }
+
+            }
+
+            // console.log(h);
+            // console.log(h).join;
+
+
+            document.getElementById("tb").innerHTML = h.join("");
+        }
+
+
+        //화면에 보이는 모든것이 html 에 미리 작성된 것이 아니다.
+        //서버에서 데이터를 받아와서 작성되야 하는 것들이 있다.
+        //국가수 엄청 많을 때 라던지
+
+
+        // var selH = [];  
+
+        // selH.push('<option value="male">남자</option>');
+        // selH.push('<option value="female">여자</option>');
+
+        var genderOption = [{
+                v: "male",
+                t: "남자"
+            },
+            {
+                v: "female",
+                t: "여자"
+            }
+        ];
+    </script>
+</body>
+
+</html>

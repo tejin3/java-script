@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>여기는 h1 영역</h1>
+
+    <!-- beforebegin -->
+    <ul id="myUL">
+        <!-- afterbegin -->
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <!-- beforebegin -->
+    </ul>
+    <!-- beforeend -->
+    <h2>여기는 h2 영역</h2>
+
+    <button onclick="myFunction()">클릭</button>
+
+    <script>
+        function myFunction() {
+            // insertADjacentHTML()
+            //파라미터가2개
+            //afterbegin  //자식 요소중에 안에 제일 처음 자식으로 하나 추가
+            //afterend    //선택된 요소가 끝난 바로 다음에 형제로 추가 
+            //beforebegin
+            //beforeend
+
+            var addHTML = '<h1>안녕</h1>';
+
+            //내가 삽입할 HTML문자열
+            document.getElementById("myUL").insertAdjacentHTML("afterbegin", addHTML);
+        }
+    </script>
+</body>
+
+</html>

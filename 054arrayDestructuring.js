@@ -4,8 +4,10 @@ function getScores() {
     return [70, 21, 100, 50, 12, 33, 45];
 }
 
-var [x, y, ...arg1s] = getScores();
-console.log(arg1s);
+var [x, y, ...args] = getScores();
+console.log(args);
+console.log(getScores());
+
 // 두개만 이름 할당되고 나머지는 args에 배열로 담긴다.
 
 // console.log(x);

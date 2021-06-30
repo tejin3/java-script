@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <!--
+    html 제어 ( 확인방법, 넣어주는 방법 , 값을 읽고 넣는 방법, 서버에서 html로 넣어주는 것, 속성읽는 방법, 사용자의 이벤트를 캣치 하는방법)
+    순서. 
+    1. DOM요소에 접근 (어떻게 접근할 것인가) -->
+
+    <input type="text" name="" id="text1"><br>
+    <input type="text" name="" id="text2"><br>
+    <button onclick="myFunction()" ;>조회</button>
+
+    <p>ABC</p>
+    <p>DEF</p>
+
+    <h2>당신이 관심있어 하는 프로그래밍 언어는</h2>
+    <label for="">
+        <input type="checkbox" name="chk_interest" id="" value="js">자바스크립트
+    </label>
+    <label for="">
+        <input type="checkbox" name="chk_interest" id="" value="html">html
+    </label><label for="">
+        <input type="checkbox" name="chk_interest" id="" value="css">css
+    </label>
+
+
+    <div>
+        <label>
+            <input type="radio" name="city" id="" value="제주">제주
+        </label>
+        <label>
+            <input type="radio" name="city" id="" value="오산">오산
+        </label>
+        <label>
+            <input type="radio" name="city" id="" value="서울">서울
+        </label>
+    </div>
+
+    <div>
+        <button onclick="myFunction(event);" id="btnSave">저장</button>
+    </div>
+
+    <script>
+        // document   - dom에 접근
+
+        function myFunction(e) {
+            var btnEle = e.target;
+            console.log(e);
+            btnEle.disabled = true;
+
+            setTimeout(function () {
+                document.querySelector("#btnSave").disabled = false; //이거 매번 가져와서 느림. 밖에 변수로 지정해두면 빠름
+            }, 2000);
+        }
+        // var btn  // 변수지정
+
+        //클릭에 함수 this
+
+        //클릭에 함수 event
+        //var btnEle = e.target;
+
+
+
+        function myFunction1() {
+            // var ele = document.getElementById("text1");
+            // console.log(ele)
+
+            var ele = document.querySelector("#txt1");
+            console.log(ele);
+
+
+            // // 속성값은 어떻게 접근하고 가져올 것인가
+            // var txt1value = ele.value; //요소에 접근만 할 수 있으면 .이름 으로 속성값 가져올 수 있음.
+            // console.log(txt1value);
+
+            // var ele2 = document.getElementById("text2");
+            // ele2.value = "가나다"; // .이름에다 넣으면 됨 .  값을 넣는 방법
+
+            ele2.
+
+            // var pTag = document.getElementsByTagName("p"); // s 가 붙어있어서 배열로 가져온다. (동일한 태그는 많을 태니까)
+            // console.log(pTag);
+
+            // document.querySelectorAll("p")
+
+
+            var rdocities = document.getElementsByName("city");
+            for () {
+
+                document.querySelector("[name=city]:checked").value;
+            }
+
+            var chks = document.getElementsByName("chk_interest")
+            // console.log(chks);
+
+            // document.querySelectorAll("[name=chk_interest")
+
+
+            //체그한 것만 가져오는 법
+            for (var chk of chks) {
+                if (chk.checked) {
+                    console.log(chk.value);
+                }
+            }
+
+            var checkedItems = document.querySelectorAll("[name=chk_interest]:checked")
+            for (var chk of checkedItems) {
+                console.log(chk.value);
+            }
+
+            //css 어트리뷰에 접근 할 수 있는 기능을 쓰면 자바스크립트로 쉽게 접근
+
+
+            // document.getElementsByClassName
+
+
+
+        }
+    </script>
+</body>
+
+</html>
