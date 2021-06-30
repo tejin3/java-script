@@ -59,13 +59,21 @@
             text-align: right;
         }
 
+        .drink>button {
+            background-color: gray;
+            width: 100%;
+        }
+
         input {
             width: 100%;
             text-align: right;
         }
 
 
-        footer {}
+        footer {
+            height: 200px;
+            overflow-y: auto;
+        }
 
         .systemMassege {}
     </style>
@@ -76,31 +84,39 @@
 
     <header>
         <div class="drink">
-            <button onclick="useCoin(4)">물<br>700</button>
+            <button class="a4" onclick="useCoin('a4')">물<br>700
+                <br>재고:<span value="" id="a4">5</span>
+            </button>
         </div>
         <div class="drink">
-            <button onclick="useCoin(5)">보리차<br>1200</button>
+            <button onclick="useCoin('a5')">보리차<br>1200
+                <br>재고:<span value="" id="a5">5</span></button>
         </div>
         <div class="drink">c</div>
         <div class="drink">d</div>
         <div class="drink">
-            <button onclick="useCoin(3)">커피<br>500</button>
+            <button onclick="useCoin('a3')">커피<br>500
+                <br>재고:<span value="" id="a3">5</span></button>
         </div>
         <div class="drink">f</div>
         <div class="drink">g</div>
         <div class="drink">h</div>
         <div class="drink">
-            <button onclick="useCoin(1)">코카콜라<br>700</button>
+            <button onclick="useCoin('a1')">코카콜라<br>700
+                <br>재고:<span value="" id="a1">5</span></button>
         </div>
         <div class="drink">
-            <button onclick="useCoin(7)">포카리<br>1000</button>
+            <button onclick="useCoin('a6')">포카리<br>1000
+                <br>재고:<span value="" id="a6">5</span></button>
         </div>
         <div class="drink">
-            <button onclick="useCoin(6)">뽀로로<br>1300</button>
+            <button onclick="useCoin('a7')">뽀로로<br>1300
+                <br>재고:<span value="" id="a7">5</span></button>
         </div>
         <div class="drink">d</div>
         <div class="drink">
-            <button onclick="useCoin(2)">오렌지주스<br>1200</button>
+            <button onclick="useCoin('a2')">오렌지주스<br>1200
+                <br>재고:<span value="" id="a2">5</span></button>
         </div>
         <div class="drink">f</div>
         <div class="drink">g</div>
@@ -119,15 +135,15 @@
         </div>
         <div> 사용가능금액 </div>
         <div>
-            <input type="text" name="" id="useableCoinI" value="0" readonly>
+            <input type="text" name="" id="useableCoinI" value="0" onchange="colorChange()" readonly>
         </div>
-        <button id="returnCoinC">반환</button>
+        <button id="returnCoinI" onclick="returnCoin()">반환</button>
 
 
     </main>
     <footer>
-        <div>
-            <textarea class="systemMassege" name="" id="" cols="75%" rows="10"></textarea>
+        <div id="systemMassege">
+            <!-- <textarea class="" name="" id="systemMassege" cols="75%" rows="10" readonly></textarea> -->
         </div>
 
     </footer>
@@ -150,10 +166,12 @@
         var inCoinV = 0;
         var money = 10000;
         // var sumInCoinV = 0;
+        var p = [];
 
         //돈을 넣으면 사용가능금액 보여주기(돈 버튼)    
         function inCoin(coin11) {
             if (money >= coin11) {
+
                 money -= coin11;
                 inCoinV += coin11;
                 // return inCoinV
@@ -167,8 +185,21 @@
                 document.getElementById("useableCoinI").value = inCoinV;
                 document.getElementById("myCoin").value = money;
 
+                systemMassege.insertAdjacentHTML("beforeend", `<p>${coin11}원을 넣었습니다.</p>`);
+                systemMassege.insertAdjacentHTML("beforeend", `<p>소지금액은 ${coin11}원이 줄어든 ${money}입니다.</p>`);
+
+
+            } else {
+                // document.getElementById("systemMassege").innerHTML = '소지금액이 부족합니다.'
+                systemMassege.insertAdjacentHTML("beforeend", `<p>소지금액이 ${money}원 입니다.</p>`);
+                systemMassege.insertAdjacentHTML("beforeend", `<p>${coin11}원을 넣을 수 없습니다.</p>`);
+
+
             }
+            document.getElementById("systemMassege").scrollTop = document.getElementById("systemMassege").scrollHeight;
+            // systemMassege.scrollTop = systemMassege.scrollHeight;
         }
+
         //사용가능금액으로 보여주기
 
         // sumInCoinV = 0 + 100;
@@ -176,57 +207,117 @@
         // console.log(inCoinV);
 
         let drinkList = [{
-                drinkId: "1",
+                drinkId: "a1",
                 drinkName: "코카콜라",
                 price: 700,
                 stock: 5
             },
             {
-                drinkId: "2",
+                drinkId: "a2",
                 drinkName: "오렌지주스",
                 price: 1200,
                 stock: 5
             },
             {
-                drinkId: "3",
+                drinkId: "a3",
                 drinkName: "커피",
                 price: 500,
                 stock: 5
             },
             {
-                drinkId: "4",
+                drinkId: "a4",
                 drinkName: "물",
                 price: 700,
                 stock: 5
             },
             {
-                drinkId: "5",
+                drinkId: "a5",
                 drinkName: "보리차",
                 price: 1200,
                 stock: 5
             },
             {
-                drinkId: "6",
+                drinkId: "a6",
                 drinkName: "포카리",
                 price: 1000,
                 stock: 5
             },
             {
-                drinkId: "7",
+                drinkId: "a7",
                 drinkName: "뽀로로",
                 price: 1300,
                 stock: 5
             }
         ];
 
-
+        // var saveStock;
         //사용하는 금액
         function useCoin(drinkId) {
 
-            var output = drinkList.filter((drinkId) => drinkList.drinkId == drinkId);
+            var output = drinkList.filter((did) => did.drinkId == drinkId)[0];
+            // console.log(output);
+            if (output.stock > 0) {
+                if (inCoinV >= output.price) {
+                    inCoinV -= output.price;
+                    output.stock -= 1;
+                    var saveStock = output.stock;
+                    var drinkId = output.drinkId;
+                    // console.log(drinkId);
+                    // document.getElementById("water").value = output.stock;
+                    // console.log(inCoinV);
+                    document.getElementById(drinkId).innerHTML = saveStock;
 
-            console.log(output);
+
+                    systemMassege.insertAdjacentHTML("beforeend", `<p>${output.price}원을 사용했습니다.</p>`);
+                    systemMassege.insertAdjacentHTML("beforeend",
+                        `<p>사용가능금액은 ${output.price}원이 줄어든 ${inCoinV}원 입니다.</p>`);
+
+                }
+            } else {
+                systemMassege.insertAdjacentHTML("beforeend", `<p>${output.drinkName}의 재고가 부족합니다.</p>`);
+
+            }
+            if (output.price > inCoinV) {
+                var notEnough = output.price - inCoinV;
+                systemMassege.insertAdjacentHTML("beforeend", `<p>사용가능금액이 ${notEnough}원 부족합니다. </p>`);
+
+            }
+
+            document.getElementById("useableCoinI").value = inCoinV;
+
         }
+
+        //반환버튼 누르면 사용가능 금액을 소지금액에 더해주는것
+        function returnCoin() {
+
+            systemMassege.insertAdjacentHTML("beforeend", `<p>${inCoinV}원을 반환했습니다.</p>`);
+
+            money += inCoinV;
+            var inCoinV2 = inCoinV;
+            inCoinV = 0;
+            document.getElementById("useableCoinI").value = inCoinV;
+            document.getElementById("myCoin").value = money;
+
+
+            systemMassege.insertAdjacentHTML("beforeend", `<p>소지금액은 ${inCoinV2}원 추가된 ${money}원 입니다.</p>`);
+
+        }
+
+        // document.querySelector("#water").insertAdjacentText = 'output.stock'
+
+
+        // console.log(drinkList);
+
+        //살 수 있는 음료 색 변하기
+        function colorChange() {
+            for (var price1 of drinkList) {
+                if (inCoinV >= price1.price)
+                    console.log(document.getElementsByClassName("a4"));
+
+            }
+        }
+
+
 
 
 
