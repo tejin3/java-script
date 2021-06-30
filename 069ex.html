@@ -1,0 +1,259 @@
+<!-- //자판기에 남아있는 잔돈까지 -->
+<!-- 가능한 목록 불 들어오게 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <title>자판기</title>
+
+    <style>
+        header,
+        main,
+        footer {
+            border: 2px solid black;
+            border-collapse: collapse;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        * {
+            box-sizing: border-box;
+            /* margin: 0%; */
+            border-collapse: collapse;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            width: 70%;
+        }
+
+        header {}
+
+        .drink {
+            flex: 25%;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+
+
+        main {}
+
+        main>button {
+            flex: 33%;
+        }
+
+        main>div {
+            color: blanchedalmond;
+            background-color: black;
+            flex: 25%;
+            /* padding: ; */
+            text-align: right;
+        }
+
+        input {
+            width: 100%;
+            text-align: right;
+        }
+
+
+        footer {}
+
+        .systemMassege {}
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="drink">
+            <button onclick="useCoin(4)">물<br>700</button>
+        </div>
+        <div class="drink">
+            <button onclick="useCoin(5)">보리차<br>1200</button>
+        </div>
+        <div class="drink">c</div>
+        <div class="drink">d</div>
+        <div class="drink">
+            <button onclick="useCoin(3)">커피<br>500</button>
+        </div>
+        <div class="drink">f</div>
+        <div class="drink">g</div>
+        <div class="drink">h</div>
+        <div class="drink">
+            <button onclick="useCoin(1)">코카콜라<br>700</button>
+        </div>
+        <div class="drink">
+            <button onclick="useCoin(7)">포카리<br>1000</button>
+        </div>
+        <div class="drink">
+            <button onclick="useCoin(6)">뽀로로<br>1300</button>
+        </div>
+        <div class="drink">d</div>
+        <div class="drink">
+            <button onclick="useCoin(2)">오렌지주스<br>1200</button>
+        </div>
+        <div class="drink">f</div>
+        <div class="drink">g</div>
+        <div class="drink">h</div>
+    </header>
+
+    <main>
+
+        <button class="coin" id="c100" onclick="inCoin(100);">100원 투입</button>
+        <button class="coin" id="c500" onclick="inCoin(500);">500원 투입</button>
+        <button class="coin" id="c1000" onclick="inCoin(1000);">1000원 투입</button>
+
+
+        <div>소지금액</div>
+        <div><input type="text" name="" id="myCoin" value="10000" readonly>
+        </div>
+        <div> 사용가능금액 </div>
+        <div>
+            <input type="text" name="" id="useableCoinI" value="0" readonly>
+        </div>
+        <button id="returnCoinC">반환</button>
+
+
+    </main>
+    <footer>
+        <div>
+            <textarea class="systemMassege" name="" id="" cols="75%" rows="10"></textarea>
+        </div>
+
+    </footer>
+
+
+    <script>
+        // //소지금액
+        // var useableCoin = 10000;
+
+        // //소지금액 줄어들기
+        // function useableCoin(투입금액) {
+
+        //     // used 클릭한 버튼의 가격
+
+        //     return useableCoin -= 투입금액;
+        // }
+
+
+        //사용가능 금액
+        var inCoinV = 0;
+        var money = 10000;
+        // var sumInCoinV = 0;
+
+        //돈을 넣으면 사용가능금액 보여주기(돈 버튼)    
+        function inCoin(coin11) {
+            if (money >= coin11) {
+                money -= coin11;
+                inCoinV += coin11;
+                // return inCoinV
+                // console.log(inCoinV);
+
+                // output.insertAdjacentHTML("#useableCoinI", `<p>${inCoinV}를 투입할 수 없습니다.</p>`);
+
+                // document.querySelector("useableCoinI").innerHTML = '(incoinv)'.value;
+                // document.getElementById("total_input_amount").value = total_input_amount;
+
+                document.getElementById("useableCoinI").value = inCoinV;
+                document.getElementById("myCoin").value = money;
+
+            }
+        }
+        //사용가능금액으로 보여주기
+
+        // sumInCoinV = 0 + 100;
+
+        // console.log(inCoinV);
+
+        let drinkList = [{
+                drinkId: "1",
+                drinkName: "코카콜라",
+                price: 700,
+                stock: 5
+            },
+            {
+                drinkId: "2",
+                drinkName: "오렌지주스",
+                price: 1200,
+                stock: 5
+            },
+            {
+                drinkId: "3",
+                drinkName: "커피",
+                price: 500,
+                stock: 5
+            },
+            {
+                drinkId: "4",
+                drinkName: "물",
+                price: 700,
+                stock: 5
+            },
+            {
+                drinkId: "5",
+                drinkName: "보리차",
+                price: 1200,
+                stock: 5
+            },
+            {
+                drinkId: "6",
+                drinkName: "포카리",
+                price: 1000,
+                stock: 5
+            },
+            {
+                drinkId: "7",
+                drinkName: "뽀로로",
+                price: 1300,
+                stock: 5
+            }
+        ];
+
+
+        //사용하는 금액
+        function useCoin(drinkId) {
+
+            var output = drinkList.filter(function (drinkId) {
+                return drinkList.drinkId == drinkId;
+            });
+            console.log(output);
+        }
+
+
+        //     inConinV -= ;
+        //     return inConinV;
+        // }
+
+        // var output = userList.filter(function (user) {
+        //     return user.gender == "female";
+        // });
+
+
+
+        // //반환버튼 누르면 사용가능 금액을 소지금액에 추가시켜주기
+        // function returnCoin() {
+        //     return useableCoin += inConinv;
+        // }
+
+
+
+
+
+
+        // document.querySelector("#myCoin").innerHTML = useableCoin(); //innerHTML 안에 이것 넣어줘
+        // document.getElementById("c100").click();
+    </script>
+
+</body>
+
+</html>

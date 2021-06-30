@@ -12,7 +12,7 @@
 
 
 
-    <select name="" id="" onchange="selectCountry(this)">
+    <select name="" id="" onchange="selectCountry(this);">
         <option value=""></option>
         <option value="kr">대한민국</option>
         <option value="jp">일본</option>
@@ -22,7 +22,7 @@
     <select name="" id="sel_city"></select>
 
 
-    <select name="" id="" onchange="selectCity(this)">
+    <select name="" id="" onchange="selectCity(this);">
         <option value="서울">서울</option>
         <option value="제주">제주</option>
         <option value="대전">대전</option>
@@ -53,11 +53,14 @@
             console.log(ele.value);
             var h = [];
             if (ele.value != "") {
+                console.log(oCity[ele.value]);
                 for (var city of oCity[ele.value]) {
-                    h.push('<option value="${city.cityCode}">${city.cityName}</option>')
+                    h.push('<option value="${city.cityCode}"> ${city.cityName} </option>');
                 }
             }
+            document.getElementById("sel_city").innerHTML = h.join("");
         }
+
 
 
 

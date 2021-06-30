@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="" id="" onblur="myFunction(event);">
+
+    <script>
+        function myFunction(e) {
+            if (e.target.value == "") {
+                e.target.style.border = "3px dotted red"; //스타일 .스타일 ㄹ로 접근(카멜 케이스로 입력)
+                alert("필수 입력값입니다. 반드시 일력하세요. 입력 안하면 못나가요");
+                //fontSize
+                e.target.focus();
+            }
+
+        }
+    </script>
+</body>
+
+</html>
