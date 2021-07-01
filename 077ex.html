@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document</title>
+</head>
+
+
+
+<body>
+    <!-- 출발역 선택 -->
+    <label for="">출발역 선택</label>
+    <select name="" id="start">
+
+    </select>
+    <!-- 도착역 선택 -->
+    <label for="">도착역 선택</label>
+    <select name="" id="end">
+
+
+    </select>
+
+    <select name="" id="age">
+        <option value="" id="">나이선택</option>
+        <option value="1250" id="age1">성인</option>
+        <option value="720" id="age2">청소년</option>
+        <option value="450" id="age3">어린이</option>
+    </select>
+
+    <button onclick="sum()">운임조회</button>
+
+    <label for="">요금:</label>
+    <input type="text" name="" id="" readonly>
+
+
+
+    <script>
+        const subwayList = ["영등포구구청역", "당산역", "합정역", "홍대입구역", "신촌역", "이대역", "아현역", "충정로역", "시청역", "을지로3가역", "을지로4가역",
+            "동대문역사문화공원역", "신당역", "상왕십리역", "왕십리역", "한양대역", "뚝섬역", "성수역", "건대입구역", "구의역", "강변역", "잠실나루역", "잠실역",
+            "종합운동장역",
+            "삼성역", "선릉역", "역삼역", "강남역", "서초역", "방배역", "사당역", "낙성대역", "서울대입구역", "봉천역", "신림역", "신대방역", "구로디지털단지역",
+            "대림역",
+            "신도림역", "문래역"
+        ];
+
+        //출발역 리스트
+        {
+            var h = [];
+            for (var list of subwayList) {
+                h.push("<Option>" + list + "</Option>")
+            }
+            document.getElementById("start").innerHTML = h.join("");
+
+        };
+
+        //도착역 리스트
+        {
+            var h = [];
+            for (var list of subwayList) {
+                h.push("<Option>" + list + "</Option>")
+            }
+            document.getElementById("end").innerHTML = h.join("");
+
+        };
+
+
+        // console.log(document.getElementById("start1").value);
+
+        // console.log(subwayList.indexOf("문래역"));
+
+        // console.log(subwayList[document.getElementById('start').value]);//
+
+        function sum() {
+
+            var startNum = subwayList.indexOf(document.getElementById('start').value);
+            var endNum = subwayList.indexOf(document.getElementById('end').value);
+
+            startNum = parseInt(startNum);
+            endNum = parseInt(endNum);
+
+            console.log(startNum);
+            console.log(endNum);
+
+
+            if (startNum < endNum) {
+                var distant = endNum - startNum;
+                console.log(distant);
+
+                var long = distant * 3170;
+                console.log(long);
+
+                var a = Math.ceil((long - 10000) / 1000) * 100;
+                console.log(a);
+                // 이쯤 어디서 부터 안됨
+
+                if (long <= 10000) {
+                    var basicFee = document.getElementById("age").value; //알아서 체크한것
+                    console.log(basicFee); //여기까지 됨
+                    return basicFee;
+
+                } else if (long <= 50000) {
+
+
+                    var basicFee1 = basicFee + Math.ceil((long - 10000) / 1000) * 100;
+
+                    // basicFee + Math.ceil((long - 10000) / 1000) * 100;
+                    console.log(basicFee1);
+
+                    return basicFee1
+                } else {
+                    return basicFee + (40 * 100) + Math.ceil((long - 50000) / 1000) * 80
+                }
+            } else if (startNum > endNum) {
+                // console.log(long);
+
+            } else {
+                // console.log(basicFee);
+
+            }
+
+        };
+
+
+
+        //스텝 단계 하나하나를 개발자 사고로 적어보자
+
+        // 출발역이 어느 역인지 가져온다 document.getElementGyId("start").value;
+        //도착역이 어느 역인지 가죠온다 document.getElementGyId("end").value;
+        //출발역과 도착역이 같은지 확인하고, 같으면 출발역과 도착역 같다고 보여주고 요금 계산을 하지 않습니다.
+        //도착역에서 출발역 사이의 몇개의 역이 있는기 계산합니다
+        //출발역과 도착역의 값을 역이름이 아니고, 인덱스번호로 만들면, 출발역과 도착역 사이의 몇개의 역이 있는지 알수 있다.
+
+        //도착역과 출발역 사이의 총 역수에 역마다 3170미터를 곱해서 총 이동 거리를 계산합니다.
+        //총 이동 거리가 10 km 이내이면 기본요금입니다. 기본요금은 성인인 경우 1250원, 청소년은 720원, 어린이는 450원 입니다.
+
+
+
+
+        // console.log(subwayList.indexOf(start1.value));
+
+
+        // function sum() {
+        //  subwayList.indexOf(   document.getElementById("start1") )                  
+
+
+        // }
+
+        // console.log(subwayList.indexof("영등포구구청역"));
+        // subwayList.indexof(document.getElementById("start").value)
+
+
+
+        const intervalDistance = 3170;
+        //성인일반 - 기본운임 : 10km 이내 - 1250원
+        //청소년 - 기본운임 : 10km 이내 - 720원
+        //어린이 - 기본운임 : 10km 이내 - 450원
+
+        //[추가운임]
+        //10~50km 이내 - 5km 마다 100원 추가
+        //50km 초가 - 8km 마다 100원 추가
+
+        //문제
+        //출발역, 도착역을 선택하고, (성인/청소년/어린이)를 선택한 후 조회 버튼을 클릭하면
+        //요금을 계산해서 화면에 보여준다.
+
+
+
+        // 출발역
+        // 셀렉트1. 아이디 만들어서
+
+        // 리스트를 갖고 셀렉트1 의 옵션값을 구한다.
+        // for in
+        // 번호를 갖고 리스트에서 텍스트 내용 불러온다. 
+
+        // 준비완료
+    </script>
+</body>
+
+</html>

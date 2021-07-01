@@ -84,38 +84,52 @@
 
     <header>
         <div class="drink">
-            <button class="a4" onclick="useCoin('a4')">물<br>700
+            <button id="btna4" onclick="useCoin('a4')">
+                <i class="fas fa-wine-bottle"></i><br>
+                물<br>700
                 <br>재고:<span value="" id="a4">5</span>
             </button>
         </div>
         <div class="drink">
-            <button class="a5" onclick="useCoin('a5')">보리차<br>1200
+            <button id="btna5" onclick="useCoin('a5')">
+                <i class="fas fa-wine-bottle"></i><br>
+                보리차<br>1200
                 <br>재고:<span value="" id="a5">5</span></button>
         </div>
         <div class="drink">c</div>
         <div class="drink">d</div>
         <div class="drink">
-            <button class="a3" onclick="useCoin('a3')">커피<br>500
+            <button id="btna3" onclick="useCoin('a3')">
+                <i class="fas fa-mug-hot"></i><br>
+                커피<br>500
                 <br>재고:<span value="" id="a3">5</span></button>
         </div>
         <div class="drink">f</div>
         <div class="drink">g</div>
         <div class="drink">h</div>
         <div class="drink">
-            <button class="a1" onclick="useCoin('a1')">코카콜라<br>700
+            <button id="btna1" onclick="useCoin('a1')">
+                <i class="fas fa-wine-bottle"></i><br>
+                코카콜라<br>700
                 <br>재고:<span value="" id="a1">5</span></button>
         </div>
         <div class="drink">
-            <button class="a6" onclick="useCoin('a6')">포카리<br>1000
+            <button id="btna6" onclick="useCoin('a6')">
+                <i class="fas fa-wine-bottle"></i><br>
+                포카리<br>1000
                 <br>재고:<span value="" id="a6">5</span></button>
         </div>
         <div class="drink">
-            <button class="a7" onclick="useCoin('a7')">뽀로로<br>1300
+            <button id="btna7" onclick="useCoin('a7')">
+                <i class="fas fa-wine-bottle"></i><br>
+                뽀로로<br>1300
                 <br>재고:<span value="" id="a7">5</span></button>
         </div>
         <div class="drink">d</div>
         <div class="drink">
-            <button class="a2" onclick="useCoin('a2')">오렌지주스<br>1200
+            <button id="btna2" onclick="useCoin('a2')">
+                <i class="fas fa-wine-bottle"></i><br>
+                오렌지주스<br>1200
                 <br>재고:<span value="" id="a2">5</span></button>
         </div>
         <div class="drink">f</div>
@@ -135,7 +149,8 @@
         </div>
         <div> 사용가능금액 </div>
         <div>
-            <input type="text" name="" id="useableCoinI" value="0" onchange="colorChange()" readonly>
+            <input type="text" name="" id="useableCoinI" value="0" readonly>
+            <!--//onload="colorChange()"-->
         </div>
         <button id="returnCoinI" onclick="returnCoin()">반환</button>
 
@@ -319,8 +334,25 @@
         //살 수 있는 음료 색 변하기
         function colorChange() {
             for (var price1 of drinkList) {
-                if (inCoinV >= price1.price)
-                    var colorC = price1.drinkId
+                console.log(price1.drinkId);
+
+                if (inCoinV >= price1.price) //사용가능금액 >= 변수.가격 
+
+                    // var colorC = price1.drinkId;
+                    console.log(price1.drinkId);
+                // document.getElementById("btn" + price1.drinkId).style.backgroundColor = "red";
+
+                var btnList = "btn" + price1.drinkId;
+                document.getElementById("btn" + price1.drinkId).style.backgroundColor = "red";
+
+
+
+                // document.getElementById("useableCoinI").onchange = handleChange;
+
+                // function handleChange(e) {
+                //     e.document.getElementById("btn" + price1.drinkId).style.backgroundColor = "red";
+                // }
+
                 // document.getElementsByClassName(colorC).style.backgroundcolor = red;
                 //클래스 이름으로 버튼에 접근해서 백그라운드 컬러를 바꾼다.
             }
