@@ -33,7 +33,9 @@
     <button onclick="sum()">운임조회</button>
 
     <label for="">요금:</label>
-    <input type="text" name="" id="" readonly>
+    <input type="text" name="" id="price" readonly>
+    <br>
+    <textarea name="" id="inpu" cols="100%" rows="10" readonly></textarea>
 
 
 
@@ -72,6 +74,9 @@
         // console.log(subwayList.indexOf("문래역"));
 
         // console.log(subwayList[document.getElementById('start').value]);//
+        var distant = 0;
+        var long = 0;
+
 
         function sum() {
 
@@ -85,42 +90,57 @@
             console.log(endNum);
 
 
+
             if (startNum < endNum) {
-                var distant = endNum - startNum;
+                distant = endNum - startNum;
                 console.log(distant);
 
-                var long = distant * 3170;
+                long = distant * 3170;
                 console.log(long);
 
-                var a = Math.ceil((long - 10000) / 1000) * 100;
-                console.log(a);
-                // 이쯤 어디서 부터 안됨
+                // var a = Math.ceil((long - 10000) / 1000) * 100;
+                // console.log(a);
+                // // 이쯤 어디서 부터 안됨
 
-                if (long <= 10000) {
-                    var basicFee = document.getElementById("age").value; //알아서 체크한것
-                    console.log(basicFee); //여기까지 됨
-                    return basicFee;
+                fee();
 
-                } else if (long <= 50000) {
-
-
-                    var basicFee1 = basicFee + (Math.ceil((long - 10000) / 5000) * 100);
-
-                    // basicFee + Math.ceil((long - 10000) / 1000) * 100;
-                    console.log(basicFee1);
-
-                    return basicFee1
-                } else {
-                    return basicFee + ((40000 / 5000) * 100) + (Math.ceil((long - 50000) / 8000) * 100);
-                }
             } else if (startNum > endNum) {
-                // console.log(long);
+                distant = subwayList.length - startNum + endNum;
+                console.log(distant);
 
+                long = distant * 3170;
+                console.log(long);
+
+                fee();
             } else {
-                // console.log(basicFee);
+                return document.getElementById("inpu").innerText = "출발역과 도착역이 같습니다";
 
             }
 
+        };
+
+
+        var basicFee = document.getElementById("age").value; //알아서 체크한것
+        console.log(basicFee); //여기까지 됨
+
+        //요금 구하는 함수
+        function fee() {
+            if (long <= 10000) {
+
+                return document.getElementById("price").innerHTML = basicFee;
+
+            } else if (long <= 50000) {
+
+
+                var basicFee1 = basicFee + (Math.ceil((long - 10000) / 5000) * 100);
+
+                // basicFee + Math.ceil((long - 10000) / 1000) * 100;
+                console.log(basicFee1);
+
+                return basicFee1
+            } else {
+                return basicFee + ((40000 / 5000) * 100) + (Math.ceil((long - 50000) / 8000) * 100);
+            }
         };
 
 
