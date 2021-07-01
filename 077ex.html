@@ -6,8 +6,11 @@
 </head>
 
 
-
 <body>
+    <!-- //쿼리 셀렉터 css 속성 모든 걸 다 가져 올 수 있다. ("[name=ageGroup]:checked").value;-->
+
+
+
     <!-- 출발역 선택 -->
     <label for="">출발역 선택</label>
     <select name="" id="start">
@@ -101,14 +104,14 @@
                 } else if (long <= 50000) {
 
 
-                    var basicFee1 = basicFee + Math.ceil((long - 10000) / 1000) * 100;
+                    var basicFee1 = basicFee + (Math.ceil((long - 10000) / 5000) * 100);
 
                     // basicFee + Math.ceil((long - 10000) / 1000) * 100;
                     console.log(basicFee1);
 
                     return basicFee1
                 } else {
-                    return basicFee + (40 * 100) + Math.ceil((long - 50000) / 1000) * 80
+                    return basicFee + ((40000 / 5000) * 100) + (Math.ceil((long - 50000) / 8000) * 100);
                 }
             } else if (startNum > endNum) {
                 // console.log(long);

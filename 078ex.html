@@ -209,6 +209,9 @@
 
         function selectMenus(a) {
             // document.getElementById("test").value = '안녕';
+
+
+
             header2.insertAdjacentHTML("beforeend", `<div>${menus[a].menuName} : ${menus[a].price} 
                 <button>-</button><input type="text" disabled name="" value="0" style="width: 30px;"><button>+</button>
                 <input type="text" disabled name="" value="0" style="width: 70px;"></div>`);
@@ -219,18 +222,26 @@
         }
 
 
-        //리스트 만들기
-        // {
-        //     var h = [];
-        //     for (var list of creditCards) {
-        //         h.push("<Option>" + list.cardName + "</Option>")
-        //     }
-        //     document.getElementById("credit").innerHTML = h.join("");
-
-        // };
 
 
+        // 버튼 만들기
 
+        var h = [];
+        for (var mList of menus) {
+            h.push("<button>" + mList.menuName + "</button>")
+
+        }
+        document.getElementById("header1").innerHTML = h.join("");
+
+
+
+        // var points = [34, 12, 45, 22, 6, 8, 2, 54];
+
+        // var outputList = points.filter(function (p) {
+        //     return p > 20;
+        // });
+
+        // console.log(outputList);
 
 
 
