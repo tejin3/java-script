@@ -6,16 +6,27 @@
 </head>
 
 <body>
+
+    <select name="" id="start"></select>
+    <select name="" id="end"></select>
     <!-- 출발역 섹렉트 박스를 만들어라 -->
     <!-- 아이디는 start -->
 
     <!-- 도착역 셀렉트 박스를 만들어라 -->
     <!-- id는 end -->
 
+    <label for=""><input type="radio" name="age" value="ADULT" id="" checked>성인</label>
+    <label for=""><input type="radio" name="age" value="YOUNG" id="">청년</label>
+    <label for=""><input type="radio" name="age" value="CHILD" id="">어린이</label>
+
+
     <!-- 라벨로 감싸여진 라디오 박스를 만들어라. name은 통일시키켜야 라디오 박스가 하나만 선택한다. -->
     <!-- 첫번째 것은 벨류값을 어덜트로 넣고 우선 체크되어있게 만들어라. 성인일반 -->
     <!-- 두번째 것은 벨류값을 영으로 만들고,  청소년 -->
     <!-- 세번째 것은 벨류값을 차일드로 만들고,  어린이 -->
+
+    <button onclick="price()">요금계산</button>
+    <div id="help" style="width: 100%; height: 150px; border: 2px solid black; overflow-y: auto;"></div>
 
     <!-- 버튼을 만들고, 버튼을 클릭했을 때 함수 하나(요금계산)를 실행시켜라. 요금계산 -->
     <!-- 설명이 들어갈 공간을 하나 만들어라. 글들이 많이 나와도 해당 공간 안에서 보여 질 수 있도록, 내용이 많이 생기면 스크롤이 생겨
@@ -42,28 +53,39 @@
 
 
 
-        // 계산을 위한 함수
-        // 선택한 출발역이 무엇인 확인한다. 출발역 셀렉트 박스에 접근해서 어떤 데이터가 선택되었는지 확인한다.
-        // 그 때 데이터의 값을 불러오면 배열의 이름이 아니라 순서에 해당하는 데이터가 벨류값으로 저장되어 바로 쓸 수 있도록 한다.
-        // 순서에 대한 값은 숫자로 보이나 문자열 데이터이기 때문에 숫자형 데이타로 바꿔준 후 변수로 설정해둔다.
-        // 마찬가지로 도착역에 대한 배열의 순서를 구한후 변수로 저장한다.
-        // 라디오 버튼으로 설정해둔 것들 중 체크 된 것의 값을 찾아 변수로 저장해둔다.
-        // 아까 설정해둔 설명문이 들어갈 공간에 접속 할 수 있는 방법을 변수로 설정해둔다.
+        function price() {
+            var startNum = parseInt(document.getElementById("start").value);
+            var endNum = parseInt(document.getElementById("end").value);
+            var checkedAge = document.querySelector("[name=age]:checked").value;
+            var goHelp = document.getElementById("help");
 
-        //중간 확인을 위해 출발역에 관한 정보를 콘솔로 확인해 본다.
-        //중간 확인을 위해 도착역에 관한 정보를 콘솔로 확인해 본다        
-        //중간 확인을 위해 라디오 버튼 중 체크된 것의 벨류값을 제대로 가져오는지 확인한다.
+            console.log("start", startNum);
+            console.log("end", endNum);
+            console.log("age", checkedAge);
+            console.log("goHelp", goHelp);
 
-        //만약 출발역과 도착역이 같다면
-        //'출발역과 도착역은 같을 수 없습니다'라는 내용을, 설명이 들어갈 공간안에 아래로 계속내용이 추가 될 수 있는 글을 작성해 넣어준다 
+            if (startNum == endNum) {
+                return goHelp.insertAdjacentHTML("beforeend", '<p>출발역과 도착역이 같습니다</p>');
+            }
 
-        //역이 몇정거장 차이인지 저장해둘 변수를 설정
+            var distance = 0;
+            if (endNum > startNum) {
+                distance = endNum - startNum;
+            } else {
+                distance = subwayList.length - startNum + endNum;
+                console.log(distance);
+            }
 
-        //만약 도착역이 출발역보다 크다면
-        //역이 몇정거장 차이인지는 도착역에서 출발역 값을 빼주면 된다.
+            var long = distance * intervalDistance;
+            console.log(long);
 
-        //그게 아니라면
-        //역이 몇정거장 차이인지는 지하철 전체 수에서 출발역을 빼준 뒤 도착역을 더해준 값이다.
+            var calculate = calculate(long, checkedAge);
+            console.log(calculate());
+
+        }
+
+
+
 
         //이동거리는 역이 몇정거장 차이인지 에 대한 값에 역거리 기본값을 곱해준다.
         //이동거리를 확인해본다
@@ -71,47 +93,59 @@
         //함수를 변수로 지정해준다. 거리와 어떤 유형의 나이인지 확인할 수 있는 변수를 파라미터로 삼는 함수를 만든다. 지하철 요금을 계산할 것이다.
         //함수를 확인해 본다
 
+        //역이 몇정거장 떨어져 있는지를 변수로 정한다
+        //만약 도착역번호가 출발역번호보다 크다면
+        //도착역에서 출발역을 빼준 값을 역이 몇정거장 떨어졌는지로 삼는다.
+        //도착역번호가 출발역번호보다 작다면
+        //몇정거장 떨어져 있는지는 역의 총 갯수에서 출발역 번호를 빼준 후 도착역 번호를 더해준다
 
-        var stationCount = 0;
-        if (end > start) {
-            stationCount = end - start;
-        } else {
-            stationCount = subwayList.length - start + end;
+        //출발역과 도착역 사이의 총 이동거리는 몇정거장 떨어져 있는지 확인한 수에 기본 거리를 곱해준다
+        //총 이동거리를 확인해 본다.
+        //지하철 요금은. 이동거리와 나이 유형을 변수로 삼는 함수를 사용해서 계산한다.
+        //지하철 요금이 잘 나오는지 확인해본다.
+
+
+        function sum() {
+
         }
 
-        const distance = stationCount * intervalDistance;
+        //지하철요금계산 함수. 총 이동거리와 나이유형을 파라미터로 삼는 함수를 만든다
+        //기본비용은 나이 유형이 성인이면 1250 청년이면 720 그 외는 450으로 정해준다.
 
-        console.log("총 이동거리", distance);
+        //만약 총 이동거리가 10000이하이거나 같으면
+        //기본비용을 되돌려준다.
 
-        const cost = calculateSubwayCost(distance, ageGroup);
-        console.log("지하철요금", cost);
+        //그게 아니라면 총 이동거리가 50000이하인지 확인해본다
+        //그렇다면 총 이동거리에서 10000미터를 빼준 후 5000으로 나눈 값을 올림처리 하고 100을 곱해준 후  기본요금을 더해준다
 
-        }
+        //그것도 아니라면
+        //기본요금 더하기 50키로에서 기본요금으로 계산된 거리를 빼준 후 5키로마다 100의 요금을 부여하고 , 
+        // 더하기 총 이동거리에서 50키로미터를 빼준 다음 8키로 나눈 값을 올림 처리 한후 100의 요금을 곱한 값을 되돌려준다
 
-        function calculateSubwayCost(distance, ageGroup) {
-            const baseAmount = (ageGroup == "ADULT") ? 1250 : (ageGroup == "YOUNG") ? 720 : 450;
 
-            if (distance <= 10000) {
-                return baseAmount;
-            } else if (distance <= 50000) {
-                return baseAmount + (Math.ceil((distance - 10000) / 5000) * 100);
-            } else {
-                return baseAmount + ((40000 / 5000) * 100) + (Math.ceil((distance - 50000) / 8000) * 100);
-            }
-        }
-
-        function loadSubway() {
+        function subwayMenus() {
             var h = [];
             for (var idx in subwayList) {
                 h.push(`<option value="${idx}">${subwayList[idx]}</option>`);
             }
-
             document.getElementById("start").innerHTML = h.join("");
             document.getElementById("end").innerHTML = h.join("");
+
+
+
         }
 
-        loadSubway();
-    </script>
-</body>
+        subwayMenus();
 
-</html>
+        // 출발역과 도착역 셀렉트 박스를 채워줄 함수를 만든다
+        //빈 배열을 하나 만든다
+        // 지하철 리스의 번호를 idx 에 지정하면서 전부 훌터본다
+        //그 때 빈 배열에 셀렉트 박스에 들어갈 옵션을 넣어준다
+        //옵션은 idx의 값을 벨류로 갖고 내용은 지하철리스트배열의 idx 번호에 해당하는 값을 불러온다.
+
+        //출발역 셀렉트에 접속해 그 안에 아까 저장해둔 배열을 하나의 값으로 넣어준다
+        //도착역도 마찬가지로 해준다
+
+
+        // 출박역과 도착역의 셀렉트 박스를 채워줄 함수를 실행시킨다
+    </script>
