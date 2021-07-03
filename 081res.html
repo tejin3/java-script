@@ -10,7 +10,6 @@
 <body>
   <div id="menu"></div>
   <br>
-
   <select id="CREDIT">
     <option>CREDIT선택</option>
   </select>
@@ -27,8 +26,8 @@
     <option>COUPON선택</option>
   </select>
 
-  <div style="background-color: rgb(62, 173, 95);">선택메뉴 및 수량</div>
-  <div style="background-color:  rgb(126, 148, 109);">요금</div>
+  <div id="menuList" style="background-color: rgb(62, 173, 95);">선택메뉴 및 수량</div>
+  <div style="background-color:  rgb(126, 148, 109);">할인 미적용 요금</div>
 
   <!-- <button onclick="donot();" id="dis">될까</button> -->
 
@@ -351,12 +350,180 @@
       }
     ];
 
+
+    var forI2 = 0;
+    var change = 0;
+    var forName = "name" + forI3;
+    var forI3 = "change" + change;
+    var forMinus = "minus" + forI3;
+    var forPlus = "plus" + forI3;
+    var count = "count" + forI3;
+
+
     //메뉴 버튼 만들기
+    var menuPrice = [];
     for (var mList of menus) {
       // console.log(mList.menuName);
       document.getElementById("menu").insertAdjacentHTML("beforeend",
-        `<button class="dis" onclick="donot();">${mList.menuName}<br>${mList.price}</button>`);
+        `<button id="a${mList.menuId}" value="${mList.price}" onclick="startDis(a${mList.menuId}), menuUp()">${mList.menuName}<br>${mList.price}</button>`
+      );
+
+      // 
+
+      // console.log("버튼아이디", document.getElementById(`a${mList.menuId}`));
+      // document.getElementById(`a${mList.menuId}`).setAttribute("disabled", ""); 작동
+      // startDis (buttonId) ;
+
+      // $ {
+      //   mList.menuName
+      // }: $ {
+      //   mList.price
+      // }
+      menuPrice = mList.price;
+
     }
+    // document.getElementById(`a${mList.menuId}`).setAttribute("disabled", ""); 작동안함.
+    // console.log(document.getElementById("a2"));
+
+    //메뉴 리스트 만들기 
+    function menuUp() {
+      //       for (var upList of menus) {
+      // if(uplist.menuName == )
+      //         document.getElementById("basicFee").value = menuPrice[0];
+      // }
+      var forMenuName = forI2.slice(1);
+      // 아이디를 삼기위해 넣어두었던 a 를 빼버린다
+      console.log(forMenuName);
+      var inputName = menus[forMenuName - 1].menuName
+      // 배열은 0 부터 시작하고 상품번호는 1번부터 시작하니까 -1 해준다
+      console.log(inputName);
+
+      document.getElementById("menuList").insertAdjacentHTML("beforeend",
+        `<br><div>${inputName}</div>단품가격<input type="number" value="0" id=${forI3}>수량<button onclick="minus(this)" id=${forMinus}>-</button><input type="number" value="1" min="0"
+    id="${count}"><button onclick="plus(this)" id=${forPlus}>+</button>`);
+
+      // `<br>선택메뉴=${forName}단품가격<input type="number" value="0" id=${forI3}>수량<button onclick="minus(this)" id=${forMinus}>-</button><input type="number" value="1" min="0"
+
+      document.getElementById(forI3).value = document.getElementById(forI2).value; //가격 넣어주기
+      // document.getElementById(forName) = document.getElementById(forI2).menuName; //가격 넣어주기
+
+
+      // mName = 0;
+      // mName = document.getElementById(forI2).menuName; //가격 넣어주기
+
+      forI3 += 1; //아이디를 변화시키면서 입력해주기 위해
+      forMinus += 1;
+      forPlus += 1;
+      count += 1;
+      forName += 1;
+    }
+
+    // for (var menuPp of menus) {
+    //     if ("a" + menuPp.menuId == this.id) {
+    //       document.getElementById("basicFee").value = menuPp.price;
+    //     }
+    //   }
+
+    //수량 마이너스
+    function minus(e) {
+
+      var replaceBtoN = e.id.replace("minus", "count"); //지금 사건이 일어나는 곳의 아이디를 수량체크 하는 텍스트의 아이디로 바꿔라
+      console.log(replaceBtoN);
+      console.log(document.getElementById("replaceBtoN"));
+      if (document.getElementById(replaceBtoN).value > 0) {
+        return document.getElementById(replaceBtoN).value -= 1;
+      }
+      // } else if (document.getElementById("countchange01").value > 0) {
+      //   return document.getElementById("countchange01").value -= 1;
+      // } else if (document.getElementById("countchange011").value > 0) {
+      //   return document.getElementById("countchange011").value -= 1;
+      // } else if (document.getElementById("countchange0111").value > 0) {
+      //   returndocument.getElementById("countchange0111").value -= 1;
+      // } else if (document.getElementById("countchange01111").value > 0) {
+      //   return document.getElementById("countchange01111").value -= 1;
+      // }
+      // if (document.getElementById("countchange011111").value > 0) {
+      //   return document.getElementById("countchange011111").value -= 1;
+      // }
+      // if (document.getElementById("countchange0111111").value > 0) {
+      //   return document.getElementById("countchange0111111").value -= 1;
+      // }
+
+    }
+
+    // 수량 더하기
+    var countPlus = 1;
+
+    function plus(e) {
+
+      var replaceBtoN = e.id.replace("plus", "count"); //지금 사건이 일어나는 곳의 아이디를 수량체크 하는 텍스트의 아이디로 바꿔라
+
+      // //벨류값을 문자열로 인식해서 01 011 되어버림
+      // document.getElementById(replaceBtoN).value += 1;
+
+      // 벨류값은 문자열이니까
+      // 벨류값을 숫자형으로 바꿔서 저장한 뒤
+      // 그 값에 +1 한 값을 벨류로 지정한다.
+      var ab = document.getElementById(replaceBtoN).value;
+      var int = parseInt(ab);
+
+      document.getElementById(replaceBtoN).value = int + 1;
+
+
+      // console.log(document.getElementById(replaceBtoN));
+      // document.getElementById(replaceBtoN).innerHTML = 25;
+      // countPlus += 1;
+    }
+
+
+
+    //메뉴 버튼 비활성화 
+
+    function startDis(idNum) {
+      // console.log("버튼찾아", document.getElementById(`idNum`));
+      // console.log("버튼찾아", document.getElementById("idNum"));
+      // console.log("버튼찾아", document.getElementById(idNum));
+      // console.log("버튼찾아", document.getElementById('idNum'));
+      // console.log("버튼찾았다", document.getElementsByTagName("button")); //버튼은 찾음
+      // console.log("버튼아이디", document.getElementsByTagName("button.id"));
+      // console.log("버튼아이디", document.getElementsByTagName("button.idNum"));
+      // console.log("버튼아이디", document.getElementsByTagName("button.idNum"));
+
+      for (i = 1; i <= 7; i++) {
+
+
+
+        var forI = "a" + i;
+        forI2 = forI;
+        // console.log(forI);
+        // console.log(idNum.id);
+        if (forI == idNum.id) { //지금 누른 버튼이 a1~7중 어느 버튼이냐?
+          //   return document.getElementById("forI").setAttribute("disabled", "");
+
+          // var n1 = i - 0;
+          // document.getElementById("basicFee").value = menuPrice[n1];
+          // menuUp();
+
+
+          return document.getElementById(forI).setAttribute("disabled", "");
+        }
+      }
+      // var myElements = $("button.idNum");
+      // console.log(myElements);
+
+      // console.log("버튼찾아", button.id = idNum);
+
+
+      // // var cButton = [];
+      // var cButton = document.getElementsByTagName("button")
+      // console.log("버튼아이디", cButton.id); 못찾음
+
+      // if (cButton.id = idNum) {
+
+      // }
+    }
+
+
 
 
 
@@ -398,18 +565,42 @@
 
     console.log(document.querySelectorAll("button"));
 
-    function donot() {
-      document.querySelector("button").setAttribute("disabled", "");
-      // document.querySelectorall("button").setAttribute("disabled", "");
 
-      // document.querySelectorAll("button").setAttribute("disabled", "").join("");
-      // document.getElementsByClassName(".dis").setAttribute("disabled", "").join("");
-    }
+
+    //메뉴 버튼 만들기 
+    //  for (var mList of menus) {
+    //   // console.log(mList.menuName);
+    //   document.getElementById("menu").insertAdjacentHTML("beforeend",
+    //     `<button id="a${mList.menuId}" onclick="donot(${mList.menuId});">${mList.menuName}<br>${mList.price}</button>`
+    //   );
+    // }
+
+    //자동으로 버튼 클릭 안되게 하는기능
+    // function donot(a) {
+    //   // console.log("파라미터", a);
+    //   document.querySelector("button").setAttribute("disabled", ""); // 이놈만 됨
+    //이 아래로 다 안됨
+    //   // document.getElementById("a").setAttribute("disabled", ""); 
+
+    //   // document.getElementById("#\a").setAttribute("disabled", "");
+    //   // document.querySelectorall("button").setAttribute("disabled", "");
+    //   // document.querySelectorall("button").setAttribute("disabled", "")[0];
+    //   // document.querySelectorall("button").setAttribute("disabled", "")[1];
+    //   // document.querySelectorall("button").setAttribute("disabled", "")[2];
+
+
+    //   // document.querySelectorAll("button").setAttribute("disabled", "").join("");
+    //   // document.getElementsByClassName(".dis").setAttribute("disabled", "").join("");
+    // }
     // document.querySelectorAll("button").setAttribute("disabled", "");
   </script>
   <button onchange="" class="menuD">aaa</button>
+  <br>단품가격<input type="number" id="basicFee">수량<button>-</button><input type="number" value="1" min="0"
+    id="count"><button>+</button>
+  <form>
+    <input type="number">
 
-
+  </form>
 </body>
 
 </html>
