@@ -8,8 +8,10 @@
 </head>
 
 <body>
+  <div>메뉴선택</div>
   <div id="menu"></div>
   <br>
+  <div>각종 할인카드 및 쿠폰선택</div>
   <select id="CREDIT">
     <option>CREDIT선택</option>
   </select>
@@ -27,7 +29,7 @@
   </select>
 
   <div id="menuList" style="background-color: rgb(62, 173, 95);">선택메뉴 및 수량</div>
-  <div style="background-color:  rgb(126, 148, 109);">할인 미적용 요금</div>
+  <div id="noCutFee" style="background-color:  rgb(126, 148, 109);">할인 미적용 요금</div>
 
   <!-- <button onclick="donot();" id="dis">될까</button> -->
 
@@ -358,6 +360,7 @@
     var forMinus = "minus" + forI3;
     var forPlus = "plus" + forI3;
     var count = "count" + forI3;
+    var forSum = "sum" + forI3;
 
 
     //메뉴 버튼 만들기
@@ -385,6 +388,8 @@
     // document.getElementById(`a${mList.menuId}`).setAttribute("disabled", ""); 작동안함.
     // console.log(document.getElementById("a2"));
 
+    var abcPrice = [];
+    var countChangeId = [];
     //메뉴 리스트 만들기 
     function menuUp() {
       //       for (var upList of menus) {
@@ -394,19 +399,28 @@
       var forMenuName = forI2.slice(1);
       // 아이디를 삼기위해 넣어두었던 a 를 빼버린다
       console.log(forMenuName);
-      var inputName = menus[forMenuName - 1].menuName
+      var inputName = menus[forMenuName - 1].menuName;
       // 배열은 0 부터 시작하고 상품번호는 1번부터 시작하니까 -1 해준다
+      var inputPrice = menus[forMenuName - 1].price;
       console.log(inputName);
 
       document.getElementById("menuList").insertAdjacentHTML("beforeend",
-        `<br><div>${inputName}</div>단품가격<input type="number" value="0" id=${forI3}>수량<button onclick="minus(this)" id=${forMinus}>-</button><input type="number" value="1" min="0"
-    id="${count}"><button onclick="plus(this)" id=${forPlus}>+</button>`);
+        `<br><div>${inputName}</div>단품가격<input type="number" readonly value="0" id=${forI3}>수량<button onclick="minus(this)" id=${forMinus}>-</button><input type="number" value="1" min="0"
+    id="${count}"><button onclick="plus(this)" id=${forPlus}>+</button>합<input type="number" readonly value="${inputPrice}" id=${forSum}>`
+      );
 
       // `<br>선택메뉴=${forName}단품가격<input type="number" value="0" id=${forI3}>수량<button onclick="minus(this)" id=${forMinus}>-</button><input type="number" value="1" min="0"
 
       document.getElementById(forI3).value = document.getElementById(forI2).value; //가격 넣어주기
       // document.getElementById(forName) = document.getElementById(forI2).menuName; //가격 넣어주기
 
+      var qwe = document.getElementById(forI3).value;
+      abcPrice.push(qwe);
+      console.log(abcPrice);
+
+      var zxc = forI3;
+      countChangeId.push(zxc);
+      console.log(countChangeId);
 
       // mName = 0;
       // mName = document.getElementById(forI2).menuName; //가격 넣어주기
@@ -416,6 +430,7 @@
       forPlus += 1;
       count += 1;
       forName += 1;
+      forSum += 1;
     }
 
     // for (var menuPp of menus) {
@@ -425,14 +440,31 @@
     //   }
 
     //수량 마이너스
+
+    var countPlus = 1;
+    var int;
+    var int1;
+
     function minus(e) {
 
       var replaceBtoN = e.id.replace("minus", "count"); //지금 사건이 일어나는 곳의 아이디를 수량체크 하는 텍스트의 아이디로 바꿔라
-      console.log(replaceBtoN);
-      console.log(document.getElementById("replaceBtoN"));
-      if (document.getElementById(replaceBtoN).value > 0) {
+      // console.log(replaceBtoN);
+      var replaceBtoS = e.id.replace("minus", "sum");
+      var replaceBto = e.id.replace("minus", "");
+      var ab = document.getElementById(replaceBtoN).value;
+      var int = parseInt(ab);
+      document.getElementById(replaceBtoS).value = (int - 1) * document.getElementById(replaceBto).value;
+      // console.log(document.getElementById("replaceBtoN"));
+      if (document.getElementById(replaceBtoN).value > 1) {
+        // var ab = document.getElementById(replaceBtoN).value;
+        document.getElementById(replaceBtoS).value = (int - 1) * document.getElementById(replaceBto).value;
+
         return document.getElementById(replaceBtoN).value -= 1;
       }
+
+
+
+
       // } else if (document.getElementById("countchange01").value > 0) {
       //   return document.getElementById("countchange01").value -= 1;
       // } else if (document.getElementById("countchange011").value > 0) {
@@ -448,15 +480,19 @@
       // if (document.getElementById("countchange0111111").value > 0) {
       //   return document.getElementById("countchange0111111").value -= 1;
       // }
-
+      sum();
     }
 
     // 수량 더하기
-    var countPlus = 1;
+
+    // var intArray=[];
+
 
     function plus(e) {
 
       var replaceBtoN = e.id.replace("plus", "count"); //지금 사건이 일어나는 곳의 아이디를 수량체크 하는 텍스트의 아이디로 바꿔라
+      var replaceBtoS = e.id.replace("plus", "sum");
+      var replaceBto = e.id.replace("plus", "");
 
       // //벨류값을 문자열로 인식해서 01 011 되어버림
       // document.getElementById(replaceBtoN).value += 1;
@@ -466,16 +502,64 @@
       // 그 값에 +1 한 값을 벨류로 지정한다.
       var ab = document.getElementById(replaceBtoN).value;
       var int = parseInt(ab);
+      // intArray.push(int);
+
+
 
       document.getElementById(replaceBtoN).value = int + 1;
 
 
+      // var ab1 = document.getElementById(replaceBtoN).value;
+      // var int1 = parseInt(ab1);
+      document.getElementById(replaceBtoS).value = (int + 1) * document.getElementById(replaceBto).value;
+
+      sum();
       // console.log(document.getElementById(replaceBtoN));
       // document.getElementById(replaceBtoN).innerHTML = 25;
       // countPlus += 1;
     }
 
+    //할인 미적용 금액
+    // var menuCount = parseInt(`document.getElementById(replaceBtoN).value`); //각각 수량?
+    // var fee000 = parseInt(`document.getElementById(forI3).value`); //각각 기본 가격? 
+    // console.log(document.getElementById(replaceBtoN).value); //nan
+    // console.log(document.getElementById(forI3).value); //nan
+    // var abcCountChange = [countchange0.value,
+    //   countchange01.value,
+    //   countchange011.value,
+    //   countchange0111.value,
+    //   countchange01111.value,
+    //   countchange011111.value,
+    //   countchange0111111.value
+    // ] 사용자가 메뉴를 순서대로 찍는게 아니니까.
 
+    function sum() {
+      // document.getElementById("noCutFee").= document.getElementById(replaceBtoN).value * ;
+      //추적할 필요 없이 다 곱하고 더하자 //추적해야 할듯
+      var sum00;
+
+      for (var i = 0; i <= abcPrice.length; i++) {
+        sum00 += abcPrice[i] * document.getElementById(countChangeId[i]);
+        console.log(document.getElementById(countChangeId[i])); // 텍스트로 때려박아서 벨류 값이 0
+      }
+      // console.log("할인 미적용 요금", sum00)
+
+      // var sum00;
+      // sum00 = menuCount * fee000;
+      document.getElementById("noCutFee").innerHTML = `할인 미적용 요금<br>${sum00};`
+
+      // var sum00 =
+      //   (change0.value * countchange0.value) +
+      //   (change01.value * countchange01.value) +
+      //   (change011.value * countchange011.value) +
+      //   (change0111.value * countchange0111.value) +
+      //   (change01111.value * countchange01111.value) +
+      //   (change011111.value * countchange011111.value) +
+      //   (change0111111.value * countchange0111111.value);
+      // document.getElementById("noCutFee").innerHTML =
+      //   `할인 미적용 요금<br>${sum00};`
+      // // 표로 만들면 간단 할 듯.
+    }
 
     //메뉴 버튼 비활성화 
 
@@ -521,6 +605,7 @@
       // if (cButton.id = idNum) {
 
       // }
+      // sum();
     }
 
 
@@ -593,6 +678,8 @@
     //   // document.getElementsByClassName(".dis").setAttribute("disabled", "").join("");
     // }
     // document.querySelectorAll("button").setAttribute("disabled", "");
+
+    // sum();
   </script>
   <button onchange="" class="menuD">aaa</button>
   <br>단품가격<input type="number" id="basicFee">수량<button>-</button><input type="number" value="1" min="0"
