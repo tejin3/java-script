@@ -13,346 +13,33 @@
   <br>
   <div>각종 할인카드 및 쿠폰선택</div>
   <select id="CREDIT">
-    <option>CREDIT선택</option>
+    <option value="0">CREDIT선택</option>
   </select>
   <select id="TELECOM">
-    <option>TELECOM선택</option>
+    <option value="0">TELECOM선택</option>
   </select>
   <select id="OKCASHBAG">
-    <option>OKCASHBAG선택</option>
+    <option value="0">OKCASHBAG선택</option>
   </select>
   <select id="POINT">
-    <option>POINT선택</option>
+    <option value="0">POINT선택</option>
   </select>
   <select id="COUPON">
-    <option>COUPON선택</option>
+    <option value="0">COUPON선택</option>
   </select>
 
   <div id="menuList" style="background-color: rgb(62, 173, 95);">선택메뉴 및 수량</div>
-  <div id="noCutFee" style="background-color:  rgb(126, 148, 109);">할인 미적용 요금</div>
+  <div id="noCutFee" style="background-color:  rgb(126, 148, 109);">할인 미적용 요금
+    <input type="number" id="noCutFeeNum" readonly>
+  </div>
+
+  <button onclick="last()">최종계산</button>
+  <input type="number" id="giveMeMoney" value="0" readonly>
 
   <!-- <button onclick="donot();" id="dis">될까</button> -->
 
-
+  <script src="082_data.js"></script>
   <script>
-    //패밀리레스토랑(VIPS) 결제 금액 계산하기 - 선택한 메뉴의 총금액과 소지하고 있는 할인 카드/통신사/포인트/OK캐시백/쿠폰을 적용해서 최종 결제 금액 구하기
-    //패밀리레스토랑 점원이라고 가정해서, 점원이 결제 금액을 계산하기 위한 화면을 구성하세요.
-    //할인카드, 통신사카드, OK캐시백, 포인트 결제
-    //제휴할인 카드 간 중복할인은 되지 않습니다.
-    //중복할인 가능한 쿠폰 사용 시, 쿠폰 할인 후 나머지 금액에 대해 제휴카드 할인이 적용됩니다.
-    //참조 : https://www.ivips.co.kr:7002/benefit/beCard.asp
-
-
-
-    //메뉴
-    const menus = [{
-        menuId: 1,
-        menuName: "무제한 샐러드바",
-        price: 25000
-      },
-      {
-        menuId: 2,
-        menuName: "안심 스테이크(150g)",
-        price: 35500
-      },
-      {
-        menuId: 3,
-        menuName: "립아이 스테이크(220g)",
-        price: 22500
-      },
-      {
-        menuId: 4,
-        menuName: "채끝 등심 스테이크(210g)",
-        price: 30500
-      },
-      {
-        menuId: 5,
-        menuName: "자몽에이드",
-        price: 6500
-      },
-      {
-        menuId: 6,
-        menuName: "애플망고에이드",
-        price: 6500
-      },
-      {
-        menuId: 7,
-        menuName: "생맥주",
-        price: 400
-      }
-    ];
-
-    //할인 종류
-    const cardTypes = [{
-        cardType: "CREDIT",
-        title: "신용카드"
-      },
-      {
-        cardType: "TELECOM",
-        title: "통신사"
-      },
-      {
-        cardType: "OKCASHBAG",
-        title: "OK캐시백"
-      },
-      {
-        cardType: "POINT",
-        title: "포인트결제"
-      }
-    ];
-
-    //할인 카드/통신사/포인트/OK캐시백
-    const creditCards = [{
-        cardId: 1,
-        cardType: "CREDIT",
-        cardName: "CJ ONE 삼성카드",
-        discount: 30,
-        discountType: "%"
-      },
-      {
-        cardId: 2,
-        cardType: "CREDIT",
-        cardName: "CJ ONE 신한카드",
-        discount: 30,
-        discountType: "%"
-      },
-      {
-        cardId: 3,
-        cardType: "CREDIT",
-        cardName: "The CJ 카드",
-        discount: 22,
-        discountType: "%"
-      },
-      {
-        cardId: 4,
-        cardType: "CREDIT",
-        cardName: "삼성 6 V4카드",
-        discount: 20,
-        discountType: "%"
-      },
-      {
-        cardId: 5,
-        cardType: "CREDIT",
-        cardName: "신한 Lady카드",
-        discount: 20,
-        discountType: "%"
-      },
-      {
-        cardId: 6,
-        cardType: "CREDIT",
-        cardName: "삼성 SFC",
-        discount: 20,
-        discountType: "%"
-      },
-      {
-        cardId: 7,
-        cardType: "CREDIT",
-        cardName: "삼성 S클라스",
-        discount: 20,
-        discountType: "%"
-      },
-      {
-        cardId: 8,
-        cardType: "CREDIT",
-        cardName: "하나 Yes OK Saver",
-        discount: 20,
-        discountType: "%"
-      },
-      {
-        cardId: 9,
-        cardType: "CREDIT",
-        cardName: "홈플러스 하나줄리엣카드",
-        discount: 20,
-        discountType: "%"
-      },
-      {
-        cardId: 10,
-        cardType: "CREDIT",
-        cardName: "하나 줄리엣카드 & Yes 4u shopping",
-        discount: 20,
-        discountType: "%"
-      },
-      {
-        cardId: 11,
-        cardType: "CREDIT",
-        cardName: "KB Star",
-        discount: 20,
-        discountType: "%"
-      },
-      {
-        cardId: 12,
-        cardType: "CREDIT",
-        cardName: "이마트 KB카드",
-        discount: 15,
-        discountType: "%"
-      },
-      {
-        cardId: 13,
-        cardType: "TELECOM",
-        cardName: "KT 멤버십 일반 할인",
-        discount: 5,
-        discountType: "%"
-      },
-      {
-        cardId: 14,
-        cardType: "TELECOM",
-        cardName: "KT 멤버십 VIP 할인",
-        discount: 15,
-        discountType: "%"
-      },
-      {
-        cardId: 15,
-        cardType: "TELECOM",
-        cardName: "T 멤버십 실버 할인",
-        discount: 5,
-        discountType: "%"
-      },
-      {
-        cardId: 16,
-        cardType: "TELECOM",
-        cardName: "T 멤버십 VIP/골드 할인",
-        discount: 15,
-        discountType: "%"
-      },
-      {
-        cardId: 17,
-        cardType: "OKCASHBAG",
-        cardName: "OK캐시백",
-        discount: 30,
-        discountType: "%"
-      },
-      {
-        cardId: 18,
-        cardType: "POINT",
-        cardName: "BC Top 포인트",
-        discount: 100,
-        discountType: "%"
-      },
-      {
-        cardId: 19,
-        cardType: "POINT",
-        cardName: "기아멤버스 카드",
-        discount: 20,
-        discountType: "%"
-      },
-      {
-        cardId: 20,
-        cardType: "POINT",
-        cardName: "삼성카드 포인트",
-        discount: 100,
-        discountType: "%"
-      },
-      {
-        cardId: 21,
-        cardType: "POINT",
-        cardName: "현대카드 M",
-        discount: 20,
-        discountType: "%"
-      },
-      {
-        cardId: 22,
-        cardType: "POINT",
-        cardName: "신한 Hi-Point 카드",
-        discount: 20,
-        discountType: "%"
-      },
-      {
-        cardId: 23,
-        cardType: "POINT",
-        cardName: "블루멤버스 카드",
-        discount: 20,
-        discountType: "%"
-      }
-    ];
-
-    //할인쿠폰
-    const coupons = [{
-        couponId: 1,
-        title: "5% 할인쿠폰(중복할인 가능)",
-        discount: 5,
-        doubleDiscount: true,
-        discountType: "%"
-      },
-      {
-        couponId: 2,
-        title: "10% 할인쿠폰(중복할인 가능)",
-        discount: 10,
-        doubleDiscount: true,
-        discountType: "%"
-      },
-      {
-        couponId: 3,
-        title: "15% 할인쿠폰(중복할인 가능)",
-        discount: 15,
-        doubleDiscount: true,
-        discountType: "%"
-      },
-      {
-        couponId: 4,
-        title: "5000 할인쿠폰(중복할인 가능)",
-        discount: 5000,
-        doubleDiscount: true,
-        discountType: ""
-      },
-      {
-        couponId: 5,
-        title: "10,000 할인쿠폰(중복할인 가능)",
-        discount: 10000,
-        doubleDiscount: true,
-        discountType: ""
-      },
-      {
-        couponId: 6,
-        title: "20,000 할인쿠폰(중복할인 가능)",
-        discount: 20000,
-        doubleDiscount: true,
-        discountType: ""
-      },
-      {
-        couponId: 7,
-        title: "5% 할인쿠폰(중복할인 불가능)",
-        discount: 5,
-        doubleDiscount: false,
-        discountType: "%"
-      },
-      {
-        couponId: 8,
-        title: "10% 할인쿠폰(중복할인 불가능)",
-        discount: 10,
-        doubleDiscount: false,
-        discountType: "%"
-      },
-      {
-        couponId: 9,
-        title: "15% 할인쿠폰(중복할인 불가능)",
-        discount: 15,
-        doubleDiscount: false,
-        discountType: "%"
-      },
-      {
-        couponId: 10,
-        title: "5000 할인쿠폰(중복할인 불가능)",
-        discount: 5000,
-        doubleDiscount: false,
-        discountType: ""
-      },
-      {
-        couponId: 11,
-        title: "10,000 할인쿠폰(중복할인 불가능)",
-        discount: 10000,
-        doubleDiscount: false,
-        discountType: ""
-      },
-      {
-        couponId: 12,
-        title: "20,000 할인쿠폰(중복할인 불가능)",
-        discount: 20000,
-        doubleDiscount: false,
-        discountType: ""
-      }
-    ];
-
-
     var forI2 = 0;
     var change = 0;
     var forName = "name" + forI3;
@@ -363,39 +50,23 @@
     var forSum = "sum" + forI3;
 
 
-    //메뉴 버튼 만들기
+    //메뉴 버튼 만들기 //끝
     var menuPrice = [];
     for (var mList of menus) {
       // console.log(mList.menuName);
       document.getElementById("menu").insertAdjacentHTML("beforeend",
         `<button id="a${mList.menuId}" value="${mList.price}" onclick="startDis(a${mList.menuId}), menuUp()">${mList.menuName}<br>${mList.price}</button>`
       );
-
-      // 
-
-      // console.log("버튼아이디", document.getElementById(`a${mList.menuId}`));
-      // document.getElementById(`a${mList.menuId}`).setAttribute("disabled", ""); 작동
-      // startDis (buttonId) ;
-
-      // $ {
-      //   mList.menuName
-      // }: $ {
-      //   mList.price
-      // }
       menuPrice = mList.price;
-
     }
-    // document.getElementById(`a${mList.menuId}`).setAttribute("disabled", ""); 작동안함.
-    // console.log(document.getElementById("a2"));
 
     var abcPrice = [];
     var countChangeId = [];
-    //메뉴 리스트 만들기 
+    console.log("countChangeId", countChangeId);
+
+    //메뉴 리스트 만들기 //끝
     function menuUp() {
-      //       for (var upList of menus) {
-      // if(uplist.menuName == )
-      //         document.getElementById("basicFee").value = menuPrice[0];
-      // }
+
       var forMenuName = forI2.slice(1);
       // 아이디를 삼기위해 넣어두었던 a 를 빼버린다
       console.log(forMenuName);
@@ -409,21 +80,17 @@
     id="${count}"><button onclick="plus(this)" id=${forPlus}>+</button>합<input type="number" readonly value="${inputPrice}" id=${forSum}>`
       );
 
-      // `<br>선택메뉴=${forName}단품가격<input type="number" value="0" id=${forI3}>수량<button onclick="minus(this)" id=${forMinus}>-</button><input type="number" value="1" min="0"
-
       document.getElementById(forI3).value = document.getElementById(forI2).value; //가격 넣어주기
-      // document.getElementById(forName) = document.getElementById(forI2).menuName; //가격 넣어주기
 
       var qwe = document.getElementById(forI3).value;
       abcPrice.push(qwe);
       console.log(abcPrice);
+      //메뉴선택순으로 가격을 배열에 넣는다
 
       var zxc = forI3;
       countChangeId.push(zxc);
-      console.log(countChangeId);
-
-      // mName = 0;
-      // mName = document.getElementById(forI2).menuName; //가격 넣어주기
+      console.log("countChangeId", countChangeId);
+      //메뉴 선택순으로 아이디기본값을 넣는다. 후에 쓸때는 원하는 "count" 등등을 앞에 더해줄 것이다.
 
       forI3 += 1; //아이디를 변화시키면서 입력해주기 위해
       forMinus += 1;
@@ -431,65 +98,58 @@
       count += 1;
       forName += 1;
       forSum += 1;
-    }
 
-    // for (var menuPp of menus) {
-    //     if ("a" + menuPp.menuId == this.id) {
-    //       document.getElementById("basicFee").value = menuPp.price;
-    //     }
-    //   }
-
-    //수량 마이너스
-
-    var countPlus = 1;
-    var int;
-    var int1;
-
-    function minus(e) {
-
-      var replaceBtoN = e.id.replace("minus", "count"); //지금 사건이 일어나는 곳의 아이디를 수량체크 하는 텍스트의 아이디로 바꿔라
-      // console.log(replaceBtoN);
-      var replaceBtoS = e.id.replace("minus", "sum");
-      var replaceBto = e.id.replace("minus", "");
-      var ab = document.getElementById(replaceBtoN).value;
-      var int = parseInt(ab);
-      document.getElementById(replaceBtoS).value = (int - 1) * document.getElementById(replaceBto).value;
-      // console.log(document.getElementById("replaceBtoN"));
-      if (document.getElementById(replaceBtoN).value > 1) {
-        // var ab = document.getElementById(replaceBtoN).value;
-        document.getElementById(replaceBtoS).value = (int - 1) * document.getElementById(replaceBto).value;
-
-        return document.getElementById(replaceBtoN).value -= 1;
-      }
-
-
-
-
-      // } else if (document.getElementById("countchange01").value > 0) {
-      //   return document.getElementById("countchange01").value -= 1;
-      // } else if (document.getElementById("countchange011").value > 0) {
-      //   return document.getElementById("countchange011").value -= 1;
-      // } else if (document.getElementById("countchange0111").value > 0) {
-      //   returndocument.getElementById("countchange0111").value -= 1;
-      // } else if (document.getElementById("countchange01111").value > 0) {
-      //   return document.getElementById("countchange01111").value -= 1;
-      // }
-      // if (document.getElementById("countchange011111").value > 0) {
-      //   return document.getElementById("countchange011111").value -= 1;
-      // }
-      // if (document.getElementById("countchange0111111").value > 0) {
-      //   return document.getElementById("countchange0111111").value -= 1;
-      // }
       sum();
     }
 
-    // 수량 더하기
-
-    // var intArray=[];
 
 
+    //수량 마이너스 //해결
+    var countPlus = 1;
+    // var intCountSelectMenu;
+
+    function minus(e) {
+
+      var countSelectMenu = e.id.replace("minus", "count");
+      //지금 사건이 일어나는 곳의 아이디를 수량체크하는 공간의 아이디로만들기
+      var countSum = e.id.replace("minus", "sum");
+      //지금 사건이 일어나는 곳의 아이디를 가격을 합치는 공간의 아이디로만들기
+      var basicFeePlace = e.id.replace("minus", "");
+      //지금 사건이 일어나는 곳의 아이디를 기본가격이 있는 공간의 아이디로만들기
+
+      var ab = document.getElementById(countSelectMenu).value;
+      var intCountSelectMenu = parseInt(ab);
+      //계산하기 위해
+      //수량체크 값이 문자열 임으로 숫자형 데이터로 바꿔준다
+
+      // document.getElementById(countSum).value = (intCountSelectMenu - 1) * document.getElementById(basicFeePlace).value;
+      //가격의 합은 = (기존 수량체크 데이터 - 1) * 기본가격 
+      console.log("마이너스 누르기 전 선택한 메뉴의 개수(숫자형)", intCountSelectMenu);
+
+      // if (intCountSelectMenu = 1) {
+      //   document.getElementById(countSelectMenu).value = 0;
+      //   return document.getElementById(countSum).value = 0;
+      // } else if (intCountSelectMenu > 1) {
+      //   document.getElementById(countSelectMenu).value -= 1;
+      //   return document.getElementById(countSum).value = document.getElementById(countSelectMenu).value * document
+      //     .getElementById(basicFeePlace).value;
+      // }
+      // if (intCountSelectMenu = 1) {
+      //   document.getElementById(countSelectMenu).value = 0;
+      //   return document.getElementById(countSum).value = 0;
+      // } else 
+      if (intCountSelectMenu >= 1) {
+        document.getElementById(countSelectMenu).value -= 1;
+        document.getElementById(countSum).value = document.getElementById(countSelectMenu).value * document
+          .getElementById(basicFeePlace).value;
+      }
+
+      sum();
+    }
+
+
+    // 수량 더하기 //해결
     function plus(e) {
-
       var replaceBtoN = e.id.replace("plus", "count"); //지금 사건이 일어나는 곳의 아이디를 수량체크 하는 텍스트의 아이디로 바꿔라
       var replaceBtoS = e.id.replace("plus", "sum");
       var replaceBto = e.id.replace("plus", "");
@@ -502,192 +162,223 @@
       // 그 값에 +1 한 값을 벨류로 지정한다.
       var ab = document.getElementById(replaceBtoN).value;
       var int = parseInt(ab);
-      // intArray.push(int);
-
-
 
       document.getElementById(replaceBtoN).value = int + 1;
-
-
-      // var ab1 = document.getElementById(replaceBtoN).value;
-      // var int1 = parseInt(ab1);
       document.getElementById(replaceBtoS).value = (int + 1) * document.getElementById(replaceBto).value;
-
       sum();
-      // console.log(document.getElementById(replaceBtoN));
-      // document.getElementById(replaceBtoN).innerHTML = 25;
-      // countPlus += 1;
     }
 
-    //할인 미적용 금액
-    // var menuCount = parseInt(`document.getElementById(replaceBtoN).value`); //각각 수량?
-    // var fee000 = parseInt(`document.getElementById(forI3).value`); //각각 기본 가격? 
-    // console.log(document.getElementById(replaceBtoN).value); //nan
-    // console.log(document.getElementById(forI3).value); //nan
-    // var abcCountChange = [countchange0.value,
-    //   countchange01.value,
-    //   countchange011.value,
-    //   countchange0111.value,
-    //   countchange01111.value,
-    //   countchange011111.value,
-    //   countchange0111111.value
-    // ] 사용자가 메뉴를 순서대로 찍는게 아니니까.
+    // console.log("합1", document.getElementById(sumchange0));
 
+    console.log("countChangeId1", countChangeId);
+    //할인 미적용 금액
     function sum() {
       // document.getElementById("noCutFee").= document.getElementById(replaceBtoN).value * ;
       //추적할 필요 없이 다 곱하고 더하자 //추적해야 할듯
-      var sum00;
+      var sum00 = 0;
+      var goSumChange;
+      console.log("countChangeId2", countChangeId);
 
-      for (var i = 0; i <= abcPrice.length; i++) {
-        sum00 += abcPrice[i] * document.getElementById(countChangeId[i]);
-        console.log(document.getElementById(countChangeId[i])); // 텍스트로 때려박아서 벨류 값이 0
+      for (var i = 0; i < abcPrice.length; i++) {
+        console.log("countChangeId3", countChangeId);
+        console.log("합2", `${sumchange0.value}`);
+
+        var goSumChange = "sum" + countChangeId[i];
+        //아이디를 찾아갈 수 있게
+        console.log("고섬체인지", document.getElementById(`${goSumChange}`).value);
+        var intSum = parseInt(document.getElementById(`${goSumChange}`).value);
+        //문자형이라서 숫자형으로 바꿔준다
+
+        sum00 += intSum;
+        // console.log("미적용 가격", sum00); // 텍스트로 때려박아서 벨류 값이 0
       }
-      // console.log("할인 미적용 요금", sum00)
-
-      // var sum00;
-      // sum00 = menuCount * fee000;
-      document.getElementById("noCutFee").innerHTML = `할인 미적용 요금<br>${sum00};`
-
-      // var sum00 =
-      //   (change0.value * countchange0.value) +
-      //   (change01.value * countchange01.value) +
-      //   (change011.value * countchange011.value) +
-      //   (change0111.value * countchange0111.value) +
-      //   (change01111.value * countchange01111.value) +
-      //   (change011111.value * countchange011111.value) +
-      //   (change0111111.value * countchange0111111.value);
-      // document.getElementById("noCutFee").innerHTML =
-      //   `할인 미적용 요금<br>${sum00};`
-      // // 표로 만들면 간단 할 듯.
+      document.getElementById("noCutFeeNum").value = `${sum00}`
     }
+    // console.log("합3", document.getElementById(sumchange0).value);
 
-    //메뉴 버튼 비활성화 
 
+    //메뉴 버튼 비활성화 //끝
     function startDis(idNum) {
-      // console.log("버튼찾아", document.getElementById(`idNum`));
-      // console.log("버튼찾아", document.getElementById("idNum"));
-      // console.log("버튼찾아", document.getElementById(idNum));
-      // console.log("버튼찾아", document.getElementById('idNum'));
-      // console.log("버튼찾았다", document.getElementsByTagName("button")); //버튼은 찾음
-      // console.log("버튼아이디", document.getElementsByTagName("button.id"));
-      // console.log("버튼아이디", document.getElementsByTagName("button.idNum"));
-      // console.log("버튼아이디", document.getElementsByTagName("button.idNum"));
-
       for (i = 1; i <= 7; i++) {
-
-
-
         var forI = "a" + i;
         forI2 = forI;
-        // console.log(forI);
-        // console.log(idNum.id);
         if (forI == idNum.id) { //지금 누른 버튼이 a1~7중 어느 버튼이냐?
-          //   return document.getElementById("forI").setAttribute("disabled", "");
-
-          // var n1 = i - 0;
-          // document.getElementById("basicFee").value = menuPrice[n1];
-          // menuUp();
-
-
           return document.getElementById(forI).setAttribute("disabled", "");
         }
       }
-      // var myElements = $("button.idNum");
-      // console.log(myElements);
-
-      // console.log("버튼찾아", button.id = idNum);
-
-
-      // // var cButton = [];
-      // var cButton = document.getElementsByTagName("button")
-      // console.log("버튼아이디", cButton.id); 못찾음
-
-      // if (cButton.id = idNum) {
-
-      // }
-      // sum();
     }
 
 
-
-
-
-    //카드선택 버튼 만들기
+    //카드선택 버튼 만들기 //끝
 
     var credit = [];
     var telecom = [];
     var okcashbag = [];
     var point = [];
-
-
     for (var cList of creditCards) {
       // console.log(cList);
       if (cList.cardType == "CREDIT") {
         credit.push(cList);
         document.getElementById("CREDIT").insertAdjacentHTML("beforeend",
-          `<option>${cList.cardName}</option>`);
+          `<option value="${cList.discount}">${cList.cardName}</option>`);
       } else if (cList.cardType == "TELECOM") {
         telecom.push(cList);
         document.getElementById("TELECOM").insertAdjacentHTML("beforeend",
-          `<option>${cList.cardName}</option>`);
+          `<option value="${cList.discount}">${cList.cardName}</option>`);
       } else if (cList.cardType == "OKCASHBAG") {
         okcashbag.push(cList);
         document.getElementById("OKCASHBAG").insertAdjacentHTML("beforeend",
-          `<option>${cList.cardName}</option>`);
+          `<option value="${cList.discount}">${cList.cardName}</option>`);
       } else
         point.push(cList);
       document.getElementById("POINT").insertAdjacentHTML("beforeend",
-        `<option>${cList.cardName}</option>`);
+        `<option value="${cList.discount}">${cList.cardName}</option>`);
     }
 
-    //쿠폰선택 버튼 만들기
+
+    //쿠폰선택 버튼 만들기 //끝
     var coupon = [];
     for (var couponList of coupons) {
       coupon.push(couponList);
       document.getElementById("COUPON").insertAdjacentHTML("beforeend",
-        `<option>${couponList.title}</option>`);
+        `<option value="${couponList.discount}" class="${couponList.doubleDiscount}">${couponList.title}</option>`);
     }
 
-    console.log(document.querySelectorAll("button"));
+
+    //최종계산
+    function last() {
+      var credit = parseInt(document.getElementById("CREDIT").value);
+      var telecom = parseInt(document.getElementById("TELECOM").value);
+      var okcashbag = parseInt(document.getElementById("OKCASHBAG").value);
+      var point = parseInt(document.getElementById("POINT").value);
+      var sortDiscount = [credit, telecom, okcashbag, point];
+      sortDiscount.sort(function (a, b) {
+        return b - a
+      });
+      var first = sortDiscount[0];
+      console.log(first);
+      var coupon = parseInt(document.getElementById("COUPON").value);
+      console.log("쿠폰 값", coupon);
+      var lastFee;
+      var lastFee1;
+      var intNoCutFeeNum;
+      var intLastSumPrice = document.getElementById("noCutFeeNum").value;
+      console.log("할인 미적용 금액", intLastSumPrice);
+      var intNoCutFeeNum = parseInt(intLastSumPrice);
+      console.log("할인 미적용 금액 인트", intNoCutFeeNum);
+      console.log("최종가격", document.getElementById("giveMeMoney").value);
+
+      //카드 선택 안했을 경우 카드 할인값
+      var cardFee;
+      //카드 할인 가격
+      if (first == 0) {
+        cardFee = 0;
+      } else {
+        cardFee = intNoCutFeeNum / first;
+      }
+
+      var couponFee;
+      //쿠폰할인 가격
+      if (coupon == 0) {
+        couponFee = 0;
+      } else {
+        if (coupon < 100) {
+          couponFee = intNoCutFeeNum / coupon;
+        } else {
+          couponFee = coupon;
+        }
+      }
+
+      console.log("중복찾기", document.getElementById("COUPON"));
 
 
+      var lastFee = (document.getElementById("COUPON").class == "ture") ? intNoCutFeeNum - couponFee - cardFee :
+        (couponFee >= cardFee) ? intNoCutFeeNum - couponFee : intNoCutFeeNum - cardFee;
 
-    //메뉴 버튼 만들기 
-    //  for (var mList of menus) {
-    //   // console.log(mList.menuName);
-    //   document.getElementById("menu").insertAdjacentHTML("beforeend",
-    //     `<button id="a${mList.menuId}" onclick="donot(${mList.menuId});">${mList.menuName}<br>${mList.price}</button>`
-    //   );
-    // }
+      document.getElementById("giveMeMoney").value = `${lastFee}`;
 
-    //자동으로 버튼 클릭 안되게 하는기능
-    // function donot(a) {
-    //   // console.log("파라미터", a);
-    //   document.querySelector("button").setAttribute("disabled", ""); // 이놈만 됨
-    //이 아래로 다 안됨
-    //   // document.getElementById("a").setAttribute("disabled", ""); 
+      // for (var couponType of coupons) {
+      //   console.log("쿠폰 값", coupon);
+      //   console.log("쿠폰리스트 값", couponType);
 
-    //   // document.getElementById("#\a").setAttribute("disabled", "");
-    //   // document.querySelectorall("button").setAttribute("disabled", "");
-    //   // document.querySelectorall("button").setAttribute("disabled", "")[0];
-    //   // document.querySelectorall("button").setAttribute("disabled", "")[1];
-    //   // document.querySelectorall("button").setAttribute("disabled", "")[2];
+      //   if (coupon == couponType.discount) {
+      //     if (couponType.doubleDiscount == "ture") {
+      //       if (couponType.discount > 100) {
+      //         lastFee = intNoCutFeeNum - couponType.discount;
+      //         lastFee = lastFee / first;
+      //         var realLast = intNoCutFeeNum - lastFee;
+      //         console.log("1번", realLast);
+      //         return document.getElementById("giveMeMoney").value = `${realLast}`;
+      //       } else {
+      //         lastFee = intNoCutFeeNum / couponType.discount;
+      //         lastFee = lastFee / first;
+      //         var realLast = intNoCutFeeNum - lastFee;
+      //         console.log("2번", realLast);
 
+      //         return document.getElementById("giveMeMoney").value = `${realLast}`;
+      //       }
+      //     } else {
+      //       //중복 할인 불가
+      //       if (couponType.discount > 100) {
+      //         //할인가격
+      //         lastFee1 = intNoCutFeeNum - couponType.discount;
+      //         //할인 미적용 금액 - 쿠폰가격 = 쿠폰 할인가격
+      //         if (lastFee1 > lastFee / first) {
+      //           // 쿠폰 할인 가격 > 할인미적용 금액에 / 카드할인퍼센트 
+      //           lastFee = lastFee / first;
+      //           var realLast = intNoCutFeeNum - lastFee;
+      //           console.log("3번", realLast);
 
-    //   // document.querySelectorAll("button").setAttribute("disabled", "").join("");
-    //   // document.getElementsByClassName(".dis").setAttribute("disabled", "").join("");
-    // }
-    // document.querySelectorAll("button").setAttribute("disabled", "");
+      //           return document.getElementById("giveMeMoney").value = `${realLast}`;
+      //         } else {
+      //           // 쿠폰 할인 가격이 더 낮으면
+      //           var realLast = intNoCutFeeNum - lastFee1;
+      //           console.log("4번", realLast);
 
-    // sum();
+      //           return document.getElementById("giveMeMoney").value = `${realLast}`;
+      //         }
+      //       } else {
+      //         //할인 퍼센트
+      //         lastFee1 = intNoCutFeeNum / couponType.discount;
+      //         if (lastFee1 > lastFee / first) {
+      //           lastFee = lastFee / first;
+      //           var realLast = intNoCutFeeNum - lastFee;
+      //           console.log("5번", realLast);
+
+      //           return document.getElementById("giveMeMoney").value = `${realLast}`;
+      //         } else {
+      //           var realLast = intNoCutFeeNum - lastFee1;
+      //           console.log("6번", realLast);
+
+      //           return document.getElementById("giveMeMoney").value = `${realLast}`;
+      //         }
+      //       }
+      //     }
+      //   } else if (coupon == 0) {
+      //     //쿠폰을 선택하지 않았으면
+      //     if (first == 0) {
+      //       console.log("7번", realLast);
+
+      //       return document.getElementById("giveMeMoney").value = `${intNoCutFeeNum}`;
+      //     } else {
+      //       lastFee = intNoCutFeeNum / first;
+      //       console.log("할인미적용인트", intNoCutFeeNum);
+      //       console.log("할인율", first);
+      //       console.log("최종할인가", lastFee);
+
+      //       var realLast = intNoCutFeeNum - lastFee;
+      //       console.log("8번", realLast);
+
+      //       return document.getElementById("giveMeMoney").value = `${realLast}`;
+      //     }
+      //   }
+      // }
+      //여기까지가 for 문
+
+    }
+
+    // console.log(document.querySelectorAll("button"));
   </script>
-  <button onchange="" class="menuD">aaa</button>
-  <br>단품가격<input type="number" id="basicFee">수량<button>-</button><input type="number" value="1" min="0"
-    id="count"><button>+</button>
-  <form>
-    <input type="number">
-
-  </form>
 </body>
 
 </html>
