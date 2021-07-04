@@ -455,13 +455,12 @@
       var int = parseInt(ab);
       document.getElementById(replaceBtoS).value = (int - 1) * document.getElementById(replaceBto).value;
       // console.log(document.getElementById("replaceBtoN"));
-      // if (document.getElementById(replaceBtoN).value > 1) {
-      // var ab = document.getElementById(replaceBtoN).value;
-      document.getElementById(replaceBtoS).value = (int - 1) * document.getElementById(replaceBto).value;
-      document.getElementById(replaceBtoN).value -= 1;
+      if (document.getElementById(replaceBtoN).value > 1) {
+        // var ab = document.getElementById(replaceBtoN).value;
+        document.getElementById(replaceBtoS).value = (int - 1) * document.getElementById(replaceBto).value;
 
-      // return document.getElementById(replaceBtoN).value -= 1;
-      // }
+        return document.getElementById(replaceBtoN).value -= 1;
+      }
 
 
 
@@ -520,8 +519,6 @@
       // countPlus += 1;
     }
 
-
-
     //할인 미적용 금액
     // var menuCount = parseInt(`document.getElementById(replaceBtoN).value`); //각각 수량?
     // var fee000 = parseInt(`document.getElementById(forI3).value`); //각각 기본 가격? 
@@ -535,31 +532,21 @@
     //   countchange011111.value,
     //   countchange0111111.value
     // ] 사용자가 메뉴를 순서대로 찍는게 아니니까.
+
     function sum() {
       // document.getElementById("noCutFee").= document.getElementById(replaceBtoN).value * ;
       //추적할 필요 없이 다 곱하고 더하자 //추적해야 할듯
-      var sum00 = 0;
-      var sumChangeList;
+      var sum00;
 
-      for (var i = 0; i < abcPrice.length; i++) {
-        if (i == 0) {
-          console.log(document.getElementById("sumchange0").value);
-
-          document.getElementById("noCutFee").innerText = `${document.getElementById("sumchange0").value}`;
-
-        }
-
-        // sumChangeList = "sumchange" + i;
-        // console.log(sumChangeList);
-        // sum00 += document.getElementById(sumChangeList);
-        // console.log(document.getElementById(`sumchange + ${i}`));
-        // console.log(document.getElementById(countChangeId[i])); // 텍스트로 때려박아서 벨류 값이 0
+      for (var i = 0; i <= abcPrice.length; i++) {
+        sum00 += abcPrice[i] * document.getElementById(countChangeId[i]);
+        console.log(document.getElementById(countChangeId[i])); // 텍스트로 때려박아서 벨류 값이 0
       }
       // console.log("할인 미적용 요금", sum00)
 
       // var sum00;
       // sum00 = menuCount * fee000;
-      // document.getElementById("noCutFee").innerHTML = `할인 미적용 요금<br>${sum00};`
+      document.getElementById("noCutFee").innerHTML = `할인 미적용 요금<br>${sum00};`
 
       // var sum00 =
       //   (change0.value * countchange0.value) +
